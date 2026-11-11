@@ -18,9 +18,39 @@
 <a class="zone news1" href="#actualite-1" aria-label="Lire l'article sur le préchargement de GTA VI">Article 1</a><a class="zone news2" href="#actualite-2" aria-label="Lire l'article sur la galerie GTA VI">Article 2</a><a class="zone news3" href="#actualite-3" aria-label="Lire l'article sur la bande-annonce GTA VI">Article 3</a>
 </div>
 <section class="archive" aria-labelledby="archives-title"><h2 id="archives-title">Articles et mises à jour</h2>
-<!-- Pour ajouter une actualité, copier un bloc <article> ci-dessous. Le décor PNG reste inchangé. -->
-<article id="actualite-1"><time datetime="2026-11-10">10 novembre 2026</time><h3>Le préchargement de GTA VI</h3><p>Informations sur la disponibilité du préchargement : à confirmer sur les canaux officiels avant toute mise à jour de cet article.</p></article>
-<article id="actualite-2"><time datetime="2026-11-05">5 novembre 2026</time><h3>Une galerie d'images de Leonida</h3><p>Les nouvelles images de Vice City et de Leonida seront présentées ici avec leurs références officielles.</p></article>
-<article id="actualite-3"><time datetime="2025-05-06">6 mai 2025</time><h3>Deuxième bande-annonce de GTA VI</h3><p>La deuxième bande-annonce présente Lucia, Jason et plusieurs environnements de Leonida.</p></article>
+<p id="etat-actualites" role="status" aria-live="polite">Chargement des actualités…</p>
+<div id="articles-dynamiques"></div>
+<noscript>Activez JavaScript pour consulter les actualités publiées.</noscript>
 <a class="back" href="index.html">Retour à l'accueil</a></section>
-</main><footer>GTA VI — Le Carnet de Leonida · Site de fans non officiel</footer></body></html>
+</main>
+<script>
+const GTA6_API='https://gta6worker.michelmalandain.workers.dev';
+const zoneArticles=document.getElementById('articles-dynamiques');
+const etat=document.getElementById('etat-actualites');
+function dateFR(value){const [y,m,d]=value.split('-').map(Number);return new Intl.DateTimeFormat('fr-FR',{day:'numeric',month:'long',year:'numeric'}).format(new Date(y,m-1,d));}
+async function afficherActualites(){
+ try{
+  const r=await fetch(GTA6_API+'/actualites',{cache:'no-store'});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const data=await r.json();if(!Array.isArray(data.articles))throw new Error('Réponse inattendue');
+  zoneArticles.replaceChildren();
+  data.articles.forEach((a,i)=>{
+   const article=document.createElement('article');article.id='actualite-'+(i+1);
+   const time=document.createElement('time');time.dateTime=a.date;time.textContent=dateFR(a.date);
+   const h=document.createElement('h3');h.textContent=a.title;
+   const desc=document.createElement('p');desc.textContent=a.summary;
+   article.append(time,h,desc);
+   if(a.image&&/^[a-zA-Z0-9_./-]+$/.test(a.image)&&!a.image.startsWith('/')&&!a.image.includes('..')){
+    const img=document.createElement('img');img.src=a.image;img.alt='Illustration : '+a.title;img.loading='lazy';img.style.cssText='display:block;max-width:100%;max-height:380px;object-fit:contain;margin-top:14px;border-radius:8px';article.append(img);
+   }
+   zoneArticles.append(article);
+  });
+  etat.textContent=data.articles.length?'': 'Aucune actualité publiée pour le moment.';
+  document.querySelectorAll('.news1,.news2,.news3').forEach((link,i)=>{
+   if(data.articles[i]){link.href='#actualite-'+(i+1);link.setAttribute('aria-label','Lire : '+data.articles[i].title)}
+   else{link.removeAttribute('href');link.setAttribute('aria-label','Actualité illustrée dans le décor (texte non actualisable)');link.style.cursor='default'}
+  });
+ }catch(e){etat.textContent='Impossible de charger les actualités pour le moment.';console.error('GTA6 actualités',e)}
+}
+afficherActualites();
+</script><footer>GTA VI — Le Carnet de Leonida · Site de fans non officiel</footer></body></html>
