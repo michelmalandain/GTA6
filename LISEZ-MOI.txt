@@ -1,0 +1,1 @@
+Version avec bandeau Vice City commun aux 10 pages. Les contenus, liens, fonctions et panneau Morticia de l’accueil sont conservés. Ouvrir index.html.
