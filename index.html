@@ -71,7 +71,7 @@ body{display:flex;justify-content:center;align-items:flex-start}
 
 /* Le plateau validé est visible AVANT le lancement ; cache les anciens pavés centraux. */
 .quiz-preview{position:absolute;z-index:11;left:0.7%;top:24.4%;width:79.5%;height:75.1%;background:#19071e url('leonida-quiz-decor.png') center center/100% 100% no-repeat;border:2px solid #f77bd8;box-shadow:0 0 20px #f43cb9;overflow:hidden}
-.quiz-launch{z-index:16!important;left:35%!important;top:74%!important;width:25%!important;height:7%!important;font-size:clamp(12px,1.5vw,23px)!important}
+.quiz-launch{z-index:16!important;left:36.4%!important;top:80.5%!important;width:15%!important;height:6.5%!important;background:transparent!important;border:0!important;box-shadow:none!important;color:transparent!important;font-size:0!important;border-radius:24px!important;cursor:pointer}.quiz-launch:hover{background:rgba(255,105,219,.12)!important;box-shadow:0 0 18px #ff5aca!important}.quiz-launch:focus-visible{outline:3px solid #fff!important;outline-offset:2px}
 @media(max-width:650px){.quiz-launch{font-size:9px!important}}
 </style>
 </head>
@@ -82,7 +82,7 @@ body{display:flex;justify-content:center;align-items:flex-start}
 <a class="retour-logo" href="index.html" aria-label="Retour à l’accueil par le logo GTA VI"></a>
 
 <div class="quiz-preview" aria-label="Plateau LEONIDA QUIZ avec Morticia en robe rouge"></div>
-<button class="quiz-launch" id="quiz-launch" type="button">LEONIDA QUIZ — JOUER</button>
+<button class="quiz-launch" id="quiz-launch" type="button" aria-label="Jouer au Leonida Quiz" title="Jouer au Leonida Quiz"></button>
 <div class="quiz-shade" id="quiz-shade" role="dialog" aria-modal="true" aria-label="Le Grand Quiz GTA" aria-hidden="true">
   <div class="quiz-stage" id="quiz-stage" style="--quiz-image:url('leonida-quiz-decor.png')">
     <button class="quiz-exit" id="quiz-exit" type="button">FERMER ×</button>
