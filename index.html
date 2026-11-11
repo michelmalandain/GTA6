@@ -30,19 +30,22 @@ body{display:flex;justify-content:center;align-items:flex-start}
 .spot.s12{left:40.29948%;top:70.80078%;width:18.68490%;height:17.28516%}
 .spot.s13{left:59.83073%;top:70.80078%;width:18.48958%;height:17.28516%}
 .spot.admin-top{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#211027 0%,#14091f 100%);border:1px solid #ef77d5;border-radius:5px;color:#fff4fc;font:italic bold clamp(10px,1.55vw,21px) Georgia,serif;text-shadow:0 1px 3px #000;white-space:nowrap;z-index:4}
+
+/* Menu unique GTA VI : huit boutons strictement identiques */
+.menu-gta{position:absolute;left:1.2%;width:97.6%;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:.35%;z-index:20;padding:.25% .35%;background:#160920;border-top:2px solid #f95dd7;border-bottom:2px solid #f95dd7;box-shadow:0 0 14px #f43cb977}
+.menu-gta a{display:flex;align-items:center;justify-content:center;min-width:0;height:100%;padding:0 2px;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:6px;color:#fff3fb;text-decoration:none;text-align:center;font:italic 700 clamp(7px,1.17vw,18px)/1.1 Georgia,serif;text-shadow:0 1px 3px #000;white-space:nowrap;box-shadow:inset 0 0 8px #ff5aca22}
+.menu-gta a:hover,.menu-gta a:focus-visible,.menu-gta a[aria-current="page"]{border-color:#ffacee;box-shadow:0 0 13px #ff5aca,inset 0 0 9px #ff5aca55;outline:none}
+.retour-logo{position:absolute;z-index:19;display:block;background:transparent;text-decoration:none}
+.retour-logo:focus-visible{outline:2px solid #ffe1fa}
+@media(max-width:650px){.menu-gta a{font-size:clamp(5px,1.15vw,9px);font-style:normal;letter-spacing:-.2px}.menu-gta{gap:1px}}
+.menu-gta{top:17.85%;height:6.1%}.retour-logo{left:58%;top:0;width:24%;height:17.5%}
 </style>
 </head>
 <body>
 <main class="scene" aria-label="Accueil GTA VI — Vice City">
 <h1 class="sr-only">GTA VI — Le Carnet de Leonida</h1>
-  <a class="spot s0" href="index.html" aria-label="Accueil" title="Accueil"><span class="sr-only">Accueil</span></a>
-  <a class="spot s1" href="actualites.html" aria-label="Actualités" title="Actualités"><span class="sr-only">Actualités</span></a>
-  <a class="spot s2" href="missions.html" aria-label="Le Jeu" title="Le Jeu"><span class="sr-only">Le Jeu</span></a>
-  <a class="spot s3" href="missions.html" aria-label="Personnages" title="Personnages"><span class="sr-only">Personnages</span></a>
-  <a class="spot s4" href="carte.html" aria-label="Monde & Carte" title="Monde & Carte"><span class="sr-only">Monde & Carte</span></a>
-  <a class="spot s5" href="videos.html" aria-label="Bandes-annonces" title="Bandes-annonces"><span class="sr-only">Bandes-annonces</span></a>
-  <a class="spot s6" href="videos.html" aria-label="Galerie" title="Galerie"><span class="sr-only">Galerie</span></a>
-  <a class="spot s7 admin-top" href="admin.html" aria-label="Administration" title="Administration">Administration</a>
+<nav class="menu-gta" aria-label="Navigation principale"><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="vehicules.html">Véhicules</a><a href="animaux.html">Animaux</a><a href="carte.html">Carte</a><a href="videos.html">Vidéos SNIR</a><a href="admin.html">Administration</a></nav>
+<a class="retour-logo" href="index.html" aria-label="Retour à l’accueil par le logo GTA VI"></a>
   <a class="spot s8" href="actualites.html" aria-label="Dernières actualités" title="Dernières actualités"><span class="sr-only">Dernières actualités</span></a>
   <a class="spot s9" href="missions.html" aria-label="Découvrir le jeu" title="Découvrir le jeu"><span class="sr-only">Découvrir le jeu</span></a>
   <a class="spot s10" href="missions.html" aria-label="Personnages" title="Personnages"><span class="sr-only">Personnages</span></a>
