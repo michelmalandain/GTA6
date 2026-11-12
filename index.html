@@ -45,9 +45,9 @@ body{display:flex;justify-content:center;align-items:flex-start}
 .quiz-launch:hover{filter:brightness(1.2)}
 .quiz-shade{position:fixed;inset:0;z-index:100;background:#08010bcc;display:none;align-items:center;justify-content:center;padding:12px}
 .quiz-shade.open{display:flex}
-.quiz-stage{position:relative;width:min(98vw,1400px);aspect-ratio:16/9;max-height:96vh;overflow:hidden;border:2px solid #f77bd8;box-shadow:0 0 35px #fc4dca;background:#19071e}
-.quiz-stage::before{content:'';position:absolute;inset:0;background-image:var(--quiz-image);background-size:100% 100%;background-repeat:no-repeat}
-.quiz-curtain{position:absolute;z-index:10;inset:0;background:repeating-linear-gradient(90deg,#4d0017 0,#ad1239 4%,#480013 9%,#79001f 13%);transform:translateY(-105%);transition:transform 1.15s ease;pointer-events:none}
+.quiz-stage{position:relative;width:min(96vw,calc(94vh * 1670 / 941));aspect-ratio:1670/941;max-height:94vh;overflow:hidden;border:2px solid #f77bd8;box-shadow:0 0 35px #fc4dca;background:#19071e}
+.quiz-stage::before{content:'';position:absolute;inset:0;background-image:var(--quiz-image);background-size:contain;background-position:center;background-repeat:no-repeat}
+.quiz-curtain{position:absolute;z-index:10;inset:0;background:linear-gradient(180deg,rgba(7,4,35,.12),rgba(15,4,37,.3)),url('accueil-vice-city.png') center center/cover no-repeat;transform:translateY(-105%);transition:transform 1.15s ease;pointer-events:none}
 .quiz-curtain.down{transform:translateY(0)}
 .quiz-curtain.up{transform:translateY(-105%)}
 .quiz-exit{position:absolute;z-index:15;top:1%;right:1%;padding:8px 12px;color:#fff;background:#240b32;border:1px solid #ff99e0;border-radius:8px;cursor:pointer;font-weight:bold}
@@ -67,7 +67,7 @@ body{display:flex;justify-content:center;align-items:flex-start}
 .quiz-board ol{width:100%;padding-left:22%;margin:0;line-height:2.1}
 .quiz-board li{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .quiz-small{font-size:clamp(9px,1vw,14px);color:#ffb9e8}
-@media(max-width:700px){.quiz-stage{width:98vw;aspect-ratio:4/5}.quiz-stage::before{background-size:cover;background-position:30% center}.quiz-ui{left:6%;top:37%;width:88%;height:54%}.quiz-board{display:none}.quiz-ui h2{font-size:19px}.quiz-ui p{font-size:12px}.quiz-answers button{font-size:12px}.quiz-launch{font-size:12px}}
+@media(max-width:700px){.quiz-stage{width:min(98vw,calc(94vh * 1670 / 941));aspect-ratio:1670/941}.quiz-stage::before{background-size:contain;background-position:center}.quiz-ui{left:6%;top:37%;width:88%;height:54%}.quiz-board{display:none}.quiz-ui h2{font-size:19px}.quiz-ui p{font-size:12px}.quiz-answers button{font-size:12px}.quiz-launch{font-size:12px}}
 
 /* Le plateau validé est visible AVANT le lancement ; cache les anciens pavés centraux. */
 .quiz-preview{position:absolute;z-index:11;left:0.7%;top:24.4%;width:79.5%;height:75.1%;background:#19071e url('leonida-quiz-decor-TV.png') center center/100% 100% no-repeat;border:2px solid #f77bd8;box-shadow:0 0 20px #f43cb9;overflow:hidden}
@@ -91,8 +91,8 @@ body{display:flex;justify-content:center;align-items:flex-start}
 .quiz-board .score-row span:first-child{overflow:hidden;text-overflow:ellipsis}
 .quiz-board .score-row span:last-child{color:#ffe06d;flex-shrink:0}
 .quiz-ui{left:36%;top:40%;width:36%;height:44%;z-index:6}
-.quiz-stage::before{background-size:100% 100%}
-@media(max-width:700px){.quiz-board{display:block;right:2%;top:47%;width:21%;height:30%}.quiz-board .score-row{font-size:8px}.quiz-stage{aspect-ratio:1670/941}.quiz-stage::before{background-size:100% 100%;background-position:center}.quiz-ui{left:31%;top:38%;width:43%;height:50%}.quiz-home-board .score-row{font-size:6px}}
+.quiz-stage::before{background-size:contain}
+@media(max-width:700px){.quiz-board{display:block;right:2%;top:47%;width:21%;height:30%}.quiz-board .score-row{font-size:8px}.quiz-stage{aspect-ratio:1670/941}.quiz-stage::before{background-size:contain;background-position:center}.quiz-ui{left:31%;top:38%;width:43%;height:50%}.quiz-home-board .score-row{font-size:6px}}
 </style>
 </head>
 <body>
@@ -129,7 +129,7 @@ function saveScore(){let scores=getScores();let old=scores.find(s=>s.pseudo.toLo
 function setup(){ui.innerHTML='<div class="quiz-panel"><h2>LEONIDA QUIZ</h2><p>10 questions sur toute la saga GTA</p><input id="quiz-name" maxlength="20" placeholder="Votre pseudo" autocomplete="nickname" aria-label="Votre pseudo"><div class="quiz-levels"><button data-level="easy" class="active">Débutant</button><button data-level="medium">Confirmé</button><button data-level="hard">Expert</button></div><button id="quiz-start">COMMENCER</button><p class="quiz-small" id="quiz-msg">Choisissez votre niveau</p></div>';level='easy';ui.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>{level=b.dataset.level;ui.querySelectorAll('[data-level]').forEach(x=>x.classList.toggle('active',x===b))});document.getElementById('quiz-start').onclick=()=>{pseudo=document.getElementById('quiz-name').value.trim().replace(/\s+/g,' ').slice(0,20);if(pseudo.length<2){document.getElementById('quiz-msg').textContent='Choisissez un pseudo de 2 à 20 caractères.';return}const pool=bank.filter(q=>q.level===level);deck=[...pool];for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]]}deck=deck.slice(0,10);pos=0;score=0;ask()}}
 function ask(){locked=false;const q=deck[pos];ui.innerHTML='<div class="quiz-panel"><p class="quiz-small">'+clean(pseudo)+' · '+names[level]+' · Question '+(pos+1)+'/10 · '+score+' pts</p><h2>'+clean(q.q)+'</h2><div class="quiz-answers"></div><p class="quiz-small" id="quiz-feedback" aria-live="polite">Choisissez une réponse</p><button id="quiz-next" style="display:none">SUIVANT</button></div>';const area=ui.querySelector('.quiz-answers');q.options.forEach((o,i)=>{let b=document.createElement('button');b.textContent=o;b.onclick=()=>{if(locked)return;locked=true;const ok=i===q.correct;if(ok)score+=points[level];area.querySelectorAll('button').forEach((btn,k)=>{btn.disabled=true;if(k===q.correct)btn.classList.add('good');else if(k===i)btn.classList.add('bad')});document.getElementById('quiz-feedback').textContent=ok?'Morticia : Bravo, mon petit !':'Morticia : Dommage, mon chéri… Réponse : '+q.options[q.correct];document.getElementById('quiz-next').style.display='inline-block'};area.append(b)});document.getElementById('quiz-next').onclick=()=>{pos++;if(pos>=10)finish();else ask()}}
 function finish(){saveScore();ui.innerHTML='<div class="quiz-panel"><h2>FIN DE PARTIE</h2><p>'+clean(pseudo)+', vous marquez <strong>'+score+' points</strong> sur '+(10*points[level])+'.</p><p>Morticia vous attend pour une revanche !</p><button id="quiz-again">REJOUER</button></div>';document.getElementById('quiz-again').onclick=setup}
-function open(){overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');top5();setup();curtain.classList.remove('up');curtain.classList.add('down');setTimeout(()=>{curtain.classList.remove('down');curtain.classList.add('up')},650)}
+function open(){overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');top5();setup();curtain.classList.remove('up');curtain.classList.add('down');setTimeout(()=>{curtain.classList.remove('down');curtain.classList.add('up')},1250)}
 function close(){curtain.classList.remove('up');curtain.classList.add('down');setTimeout(()=>{overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');curtain.classList.remove('down')},900)}
 top5();document.getElementById('quiz-launch').onclick=open;document.getElementById('quiz-exit').onclick=close;document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close()});
 })();
