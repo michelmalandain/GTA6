@@ -7,13 +7,50 @@ header h1{margin:0;color:#ffe0ad;font:italic bold clamp(26px,2.8vw,43px) Georgia
 .nav{display:none}main{min-height:calc(100vh - 86px);padding:14px 34px 32px;border-left:2px solid #f6b34c}
 .card{background:#151021;border:2px solid #e6a84b;border-radius:18px;padding:26px 34px;margin:0 0 22px;box-shadow:0 0 16px #f05aa455}
 h2{font:italic bold 29px Georgia,serif;color:#ffd78e;margin:0 0 12px}.muted{font-size:14px;color:#e5d5e5;line-height:1.5}
-label{display:block;color:#ffd78e;font-size:16px;font-weight:bold;margin:16px 0 7px}
+.authbox{padding:0 0 18px;margin-bottom:18px;border-bottom:1px solid #75516b}label{display:block;color:#ffd78e;font-size:16px;font-weight:bold;margin:16px 0 7px}
 input,textarea,select{display:block;width:100%;padding:13px 14px;background:#071c1c;color:#fff;border:1px solid #dca94c;border-radius:6px;font:17px Arial,sans-serif}
 textarea{min-height:140px;resize:vertical}input:focus,textarea:focus,select:focus{outline:2px solid #fa6ac8;outline-offset:1px}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}button,.back{display:inline-block;padding:12px 22px;color:#fff;background:linear-gradient(#c21a85,#770e5c);border:1px solid #ffd178;border-radius:8px;cursor:pointer;text-decoration:none;font-size:16px;box-shadow:0 0 10px #d62c8a55}button:hover,.back:hover{box-shadow:0 0 16px #ff69d1}
 .entry{border-top:1px solid #76517e;padding:16px 0}.entry strong,.status{color:#ffe1ac}.entry p{color:#dcc9df;white-space:pre-wrap}.status{min-height:20px}.danger{border-color:#ff9494}.preview{max-width:240px;max-height:160px;object-fit:contain;margin-top:10px;border-radius:6px}.footer{display:flex;justify-content:flex-end;margin:14px 0 24px}
 @media(max-width:1100px){header,main{width:70%}main{padding:14px 18px 24px}.card{padding:20px}}
 @media(max-width:750px){body{background-position:22% top;background-size:auto 100vh}header,main{width:100%;border-left:0;background:rgba(16,11,24,.96)}header{padding:18px 10px 8px}main{padding:12px}.card{padding:17px}input,textarea,select{font-size:16px}}
-</style></head><body><header><h1>Administration — Missions</h1></header><main><section class="card"><h2>Ajouter ou modifier une fiche</h2><p class="muted">Les fiches créées ici sont des brouillons enregistrés dans ce navigateur. Elles ne sont pas encore publiées sur le site.</p><form id="editor"><input type="hidden" id="entryId"><label for="name">Titre / Nom</label><input id="name" maxlength="160" required><label for="kind">Catégorie</label><select id="kind"><option>Missions principales</option><option>Missions secondaires</option></select><label for="summary">Description / Biographie</label><textarea id="summary"></textarea><label for="place">Lieu / Localisation</label><input id="place"><label for="image">Image (nom de fichier ou URL autorisée)</label><input id="image" placeholder="exemple.png"><img id="preview" class="preview" alt="Aperçu de l’image" hidden><label for="video">Vidéo — SPOILER SOLUTION (adresse)</label><input id="video" type="url" placeholder="https://…"><div class="actions"><button type="submit">Valider</button><button type="button" id="new">Nouvelle fiche</button></div></form><p id="status" class="status" aria-live="polite"></p></section><section class="card"><h2>Fiches enregistrées</h2><div id="list"></div></section><div class="footer"><a class="back" href="admin.html">Retour à l’administration</a></div></main><script>
-'use strict';const section='missions',key='leonida-admin-brouillons-v1',fields=['name','kind','summary','place','image','video'];const $=id=>document.getElementById(id);function load(){try{return JSON.parse(localStorage.getItem(key))||'{}')}catch{return {}}}function save(d){localStorage.setItem(key,JSON.stringify(d))}function reset(){$('editor').reset();$('entryId').value='';$('status').textContent='';$('preview').hidden=true}function preview(){const v=$('image').value.trim();if(v && (/^https:\/\//.test(v)||/^[\w./-]+\.(png|jpg|jpeg|webp)$/i.test(v))){$('preview').src=v;$('preview').hidden=false}else $('preview').hidden=true}$('image').addEventListener('change',preview);$('new').onclick=reset;function render(){const items=load()[section]||[];$('list').replaceChildren();if(!items.length){$('list').textContent='Aucune fiche enregistrée.';return}items.forEach(item=>{const row=document.createElement('div');row.className='entry';const strong=document.createElement('strong');strong.textContent=item.name+' — '+item.kind;row.append(strong);if(item.summary){const para=document.createElement('p');para.textContent=item.summary;row.append(para)}const buttons=document.createElement('div');buttons.className='actions';const edit=document.createElement('button');edit.textContent='Modifier';edit.onclick=()=>{$('entryId').value=item.id;fields.forEach(f=>$(f).value=item[f]||'');preview();window.scrollTo({top:0,behavior:'smooth'})};const del=document.createElement('button');del.textContent='Supprimer';del.className='danger';del.onclick=()=>{if(!confirm('Supprimer « '+item.name+' » ?'))return;const d=load();d[section]=(d[section]||[]).filter(x=>x.id!==item.id);save(d);reset();render()};buttons.append(edit,del);row.append(buttons);$('list').append(row)})}$('editor').onsubmit=e=>{e.preventDefault();const d=load(),arr=d[section]||[],id=$('entryId').value||String(Date.now());const item={id};fields.forEach(f=>item[f]=$(f).value.trim());const i=arr.findIndex(x=>x.id===id);if(i===-1)arr.push(item);else arr[i]=item;d[section]=arr;try{save(d);$('entryId').value=id;$('status').textContent='Fiche enregistrée localement (non publiée).';render()}catch{$('status').textContent='Impossible d’enregistrer dans ce navigateur.'}};render();
+</style></head><body><header><h1>Administration — Missions</h1></header><main><section class="card"><h2>Ajouter ou modifier une fiche</h2><p class="muted">Les missions validées sont publiées sur le site via Cloudflare. Le jeton administrateur reste uniquement en mémoire dans cet onglet.</p><div class="authbox"><label for="token">Jeton administrateur Cloudflare</label><input id="token" type="password" autocomplete="off" placeholder="GTA6_ADMIN_TOKEN (jamais enregistré)"><div class="actions"><button type="button" id="connect">Se connecter / Actualiser</button><a class="back" href="missions.html" target="_blank" rel="noopener">Voir la page Missions</a></div></div><form id="editor"><input type="hidden" id="entryId"><label for="name">Titre / Nom</label><input id="name" maxlength="160" required><label for="kind">Catégorie</label><select id="kind"><option>Missions principales</option><option>Missions secondaires</option></select><label for="summary">Description / Biographie</label><textarea id="summary"></textarea><label for="place">Lieu / Localisation</label><input id="place"><label for="image">Image (nom de fichier ou URL autorisée)</label><input id="image" placeholder="exemple.png"><img id="preview" class="preview" alt="Aperçu de l’image" hidden><label for="video">Vidéo — SPOILER SOLUTION (adresse)</label><input id="video" type="url" placeholder="https://…"><div class="actions"><button type="submit">Valider</button><button type="button" id="new">Nouvelle fiche</button></div></form><p id="status" class="status" aria-live="polite"></p></section><section class="card"><h2>Fiches enregistrées</h2><div id="list"></div></section><div class="footer"><a class="back" href="admin.html">Retour à l’administration</a></div></main><script>
+'use strict';
+const API='https://gta6worker.michelmalandain.workers.dev';
+const fields=['name','kind','summary','place','image','video'];
+const $=id=>document.getElementById(id);
+let token='', missions=[];
+function setStatus(s){$('status').textContent=s}
+function reset(){$('editor').reset();$('entryId').value='';$('preview').hidden=true;setStatus('')}
+function preview(){const v=$('image').value.trim();if(v && (/^https:\/\//.test(v)||/^[\w./-]+\.(png|jpg|jpeg|webp)$/i.test(v))){$('preview').src=v;$('preview').hidden=false}else $('preview').hidden=true}
+$('image').addEventListener('change',preview);$('new').onclick=reset;
+async function api(path,options={}){
+ const headers={'Authorization':'Bearer '+token,...(options.body?{'Content-Type':'application/json'}:{})};
+ let res;try{res=await fetch(API+path,{...options,headers,cache:'no-store'})}catch{throw Error('Worker inaccessible : vérifie sa publication et ta connexion.')}
+ let data;try{data=await res.json()}catch{throw Error('Réponse du Worker invalide')}
+ if(!res.ok)throw Error(data.error||'Erreur HTTP '+res.status);
+ return data;
+}
+function render(){
+ $('list').replaceChildren();
+ if(!missions.length){$('list').textContent='Aucune mission publiée pour le moment.';return}
+ for(const item of missions){
+  const row=document.createElement('div');row.className='entry';
+  const strong=document.createElement('strong');strong.textContent=item.name+' — '+item.kind;row.append(strong);
+  if(item.summary){const para=document.createElement('p');para.textContent=item.summary;row.append(para)}
+  const actions=document.createElement('div');actions.className='actions';
+  const edit=document.createElement('button');edit.type='button';edit.textContent='Modifier';edit.onclick=()=>{$('entryId').value=item.id;fields.forEach(f=>$(f).value=item[f]||'');preview();window.scrollTo({top:0,behavior:'smooth'})};
+  const del=document.createElement('button');del.type='button';del.textContent='Supprimer';del.className='danger';del.onclick=async()=>{if(!confirm('Supprimer « '+item.name+' » du site ?'))return;try{await api('/missions/'+encodeURIComponent(item.id),{method:'DELETE'});reset();await refresh();setStatus('Mission supprimée du site.')}catch(e){setStatus(e.message)}};
+  actions.append(edit,del);row.append(actions);$('list').append(row);
+ }
+}
+async function refresh(){const data=await api('/missions?admin=1');missions=data.missions||[];render()}
+$('connect').onclick=async()=>{const t=$('token').value.trim();if(!t){setStatus('Saisis ton jeton administrateur.');return}token=t;try{await refresh();setStatus('Connecté à Cloudflare : '+missions.length+' mission(s).');$('token').value=''}catch(e){token='';setStatus(e.message)}};
+$('editor').onsubmit=async e=>{
+ e.preventDefault();if(!token){setStatus('Connecte-toi d’abord avec ton jeton administrateur.');return}
+ const body={};fields.forEach(f=>body[f]=$(f).value.trim());
+ const id=$('entryId').value;
+ try{await api(id?'/missions/'+encodeURIComponent(id):'/missions',{method:id?'PUT':'POST',body:JSON.stringify(body)});reset();await refresh();setStatus('Mission publiée sur le site !')}catch(err){setStatus(err.message)}
+};
+$('list').textContent='Connecte-toi pour afficher les missions enregistrées dans Cloudflare.';
 </script></body></html>
