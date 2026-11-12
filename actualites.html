@@ -48,7 +48,7 @@ async function afficherActualites(){
   const une=document.getElementById('une-dynamique');une.replaceChildren();
   if(!data.articles.length){const empty=document.createElement('span');empty.className='news-empty';empty.textContent='Aucune actualité publiée pour le moment.';une.append(empty);}
   data.articles.slice(0,3).forEach((a,i)=>{
-   const link=document.createElement('a');link.className='news-slot';link.style.top=[42,59.6,77.1][i]+'%';link.href='#actualite-'+encodeURIComponent(a.id);link.setAttribute('aria-label','Lire : '+a.title);
+   const link=document.createElement('a');link.className='news-slot';link.style.top=[42,59.6,77.1][i]+'%';link.href=(typeof a.url==='string'&&/^https:\/\/(?:www\.)?rockstargames\.com\/newswire\/article\//i.test(a.url))?a.url:'https://www.rockstargames.com/fr/newswire?tag=722';link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Lire sur Rockstar Games : '+a.title);
    const content=document.createElement('span');content.className='slot-content';
    const date=document.createElement('time');date.className='slot-date';date.dateTime=a.date;date.textContent=dateFR(a.date);
    const title=document.createElement('strong');title.className='slot-title';title.textContent=a.title;
@@ -59,7 +59,7 @@ async function afficherActualites(){
   data.articles.forEach((a,i)=>{
    const article=document.createElement('article');article.id='actualite-'+a.id;
    const time=document.createElement('time');time.dateTime=a.date;time.textContent=dateFR(a.date);
-   const h=document.createElement('h3');h.textContent=a.title;
+   const h=document.createElement('h3');const official=document.createElement('a');official.href=(typeof a.url==='string'&&/^https:\/\/(?:www\.)?rockstargames\.com\/newswire\/article\//i.test(a.url))?a.url:'https://www.rockstargames.com/fr/newswire?tag=722';official.target='_blank';official.rel='noopener noreferrer';official.textContent=a.title;official.style.color='inherit';h.append(official);
    const desc=document.createElement('p');desc.textContent=a.summary;
    article.append(time,h,desc);
    if(a.image&&/^[a-zA-Z0-9_./-]+$/.test(a.image)&&!a.image.startsWith('/')&&!a.image.includes('..')){
