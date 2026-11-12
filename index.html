@@ -105,7 +105,11 @@ body{display:flex;justify-content:center;align-items:flex-start}
 @media(prefers-reduced-motion:reduce){.quiz-curtain{transition:none}}
 /* Tatouage Vice City : zone interactive invisible, sans modifier le décor. */
 .tatouage-map{position:absolute;z-index:30;left:81.5%;top:41.7%;width:9.2%;height:24%;display:block;background:transparent;border-radius:40%;cursor:pointer}
+.tatouage-map::after{content:"";position:absolute;inset:0;border-radius:40%;pointer-events:none;box-shadow:0 0 0 rgba(255,132,220,0);animation:tatouage-lueur 3.8s ease-in-out infinite}
+@keyframes tatouage-lueur{0%,100%{box-shadow:0 0 0 rgba(255,132,220,0);background:rgba(255,132,220,0)}50%{box-shadow:0 0 15px 3px rgba(255,132,220,.35),inset 0 0 12px rgba(255,132,220,.18);background:rgba(255,132,220,.035)}}
+.tatouage-map:hover::after{box-shadow:0 0 18px 4px rgba(255,132,220,.5)}
 .tatouage-map:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 15px #ff4bc5}
+@media(prefers-reduced-motion:reduce){.tatouage-map::after{animation:none;box-shadow:0 0 10px rgba(255,132,220,.25)}}
 </style>
 </head>
 <body>
@@ -114,7 +118,7 @@ body{display:flex;justify-content:center;align-items:flex-start}
 <nav class="menu-gta" aria-label="Navigation principale"><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="objets.html">Objets</a><a href="admin.html">Administration</a></nav>
 <a class="retour-logo" href="index.html" aria-label="Retour à l’accueil par le logo GTA VI"></a>
 
-<a class="tatouage-map" href="https://mapgenie.io/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir MapGenie pour consulter les cartes GTA" title="Voir les cartes GTA sur MapGenie"></a>
+<a class="tatouage-map" href="https://www.gtabase.com/fr/gta-6/carte/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir la carte GTA VI sur GTA Base" title="Voir la carte GTA VI sur GTA Base"></a>
 <div class="quiz-preview" aria-label="Plateau TV LEONIDA QUIZ avec Morticia en jean et tee-shirt"><section class="quiz-home-board" aria-label="Classement des cinq meilleurs joueurs"><div class="score-rows" id="quiz-home-top5"></div></section></div>
 <button class="quiz-launch" id="quiz-launch" type="button" aria-label="Jouer au Leonida Quiz" title="Jouer au Leonida Quiz"></button>
 <div class="quiz-shade" id="quiz-shade" role="dialog" aria-modal="true" aria-label="Le Grand Quiz GTA" aria-hidden="true">
