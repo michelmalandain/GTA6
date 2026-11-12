@@ -47,7 +47,7 @@ body{display:flex;justify-content:center;align-items:flex-start}
 .quiz-shade.open{display:flex}
 .quiz-stage{position:relative;width:min(96vw,calc(94vh * 1670 / 941));aspect-ratio:1670/941;max-height:94vh;overflow:hidden;border:2px solid #f77bd8;box-shadow:0 0 35px #fc4dca;background:#19071e}
 .quiz-stage::before{content:'';position:absolute;inset:0;background-image:var(--quiz-image);background-size:contain;background-position:center;background-repeat:no-repeat}
-.quiz-curtain{position:absolute;z-index:10;inset:0;background:linear-gradient(180deg,rgba(7,4,35,.12),rgba(15,4,37,.3)),url('accueil-vice-city.png') center center/cover no-repeat;transform:translateY(-105%);transition:transform 1.15s ease;pointer-events:none}
+.quiz-curtain{position:absolute;z-index:10;inset:0;background:linear-gradient(180deg,#21134e 0%,#813a9a 27%,#f176a1 53%,#ffa15e 66%,#352052 68%,#110e32 100%);transform:translateY(-105%);transition:transform 1.15s ease;pointer-events:none}
 .quiz-curtain.down{transform:translateY(0)}
 .quiz-curtain.up{transform:translateY(-105%)}
 .quiz-exit{position:absolute;z-index:15;top:1%;right:1%;padding:8px 12px;color:#fff;background:#240b32;border:1px solid #ff99e0;border-radius:8px;cursor:pointer;font-weight:bold}
@@ -93,6 +93,16 @@ body{display:flex;justify-content:center;align-items:flex-start}
 .quiz-ui{left:36%;top:40%;width:36%;height:44%;z-index:6}
 .quiz-stage::before{background-size:contain}
 @media(max-width:700px){.quiz-board{display:block;right:2%;top:47%;width:21%;height:30%}.quiz-board .score-row{font-size:8px}.quiz-stage{aspect-ratio:1670/941}.quiz-stage::before{background-size:contain;background-position:center}.quiz-ui{left:31%;top:38%;width:43%;height:50%}.quiz-home-board .score-row{font-size:6px}}
+
+/* Transition Miami : skyline dessinee en CSS, jamais l'ancien accueil. */
+.quiz-curtain::before{content:"";position:absolute;left:0;right:0;bottom:16%;height:45%;background:linear-gradient(90deg,#160e34 0 5%,transparent 5% 7%,#1a123e 7% 12%,transparent 12% 14%,#21133e 14% 20%,transparent 20% 22%,#191139 22% 28%,transparent 28% 30%,#21123e 30% 37%,transparent 37% 39%,#1a1038 39% 45%,transparent 45% 48%,#21123c 48% 55%,transparent 55% 57%,#1b113b 57% 65%,transparent 65% 68%,#21113e 68% 74%,transparent 74% 77%,#1a113b 77% 83%,transparent 83% 85%,#21123e 85% 93%,transparent 93% 95%,#1b123e 95%);clip-path:polygon(0 45%,5% 45%,5% 18%,12% 18%,12% 40%,20% 40%,20% 9%,28% 9%,28% 29%,37% 29%,37% 0,45% 0,45% 35%,55% 35%,55% 16%,65% 16%,65% 42%,74% 42%,74% 6%,83% 6%,83% 30%,93% 30%,93% 47%,100% 47%,100% 100%,0 100%);filter:drop-shadow(0 0 15px #fa67cf)}
+.quiz-curtain::after{content:"VICE CITY  •  MIAMI NIGHTS";position:absolute;left:0;right:0;bottom:8%;text-align:center;font:italic bold clamp(20px,3.4vw,56px) Georgia,serif;letter-spacing:.08em;color:#fff0ff;text-shadow:0 0 12px #ff45cb,0 0 28px #ff45cb}
+/* Les scores sont ancrés dans le PNG, pas dans les coordonnees de la page. */
+.quiz-preview .quiz-home-board{position:absolute;left:75.3%;top:47.9%;width:20.4%;height:32.1%;z-index:3;pointer-events:none}
+.quiz-preview .quiz-home-board .score-row{font-size:clamp(7px,.9vw,15px);padding-left:19%;padding-right:3%}
+.quiz-board{right:3.2%;top:47.8%;width:20%;height:31.6%}
+.quiz-board .score-row{padding-left:20%;font-size:clamp(8px,.92vw,15px)}
+@media(prefers-reduced-motion:reduce){.quiz-curtain{transition:none}}
 </style>
 </head>
 <body>
@@ -101,8 +111,7 @@ body{display:flex;justify-content:center;align-items:flex-start}
 <nav class="menu-gta" aria-label="Navigation principale"><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="objets.html">Objets</a><a href="admin.html">Administration</a></nav>
 <a class="retour-logo" href="index.html" aria-label="Retour à l’accueil par le logo GTA VI"></a>
 
-<div class="quiz-preview" aria-label="Plateau TV LEONIDA QUIZ avec Morticia en jean et tee-shirt"></div>
-<section class="quiz-home-board" aria-label="Classement des cinq meilleurs joueurs"><div class="score-rows" id="quiz-home-top5"></div></section>
+<div class="quiz-preview" aria-label="Plateau TV LEONIDA QUIZ avec Morticia en jean et tee-shirt"><section class="quiz-home-board" aria-label="Classement des cinq meilleurs joueurs"><div class="score-rows" id="quiz-home-top5"></div></section></div>
 <button class="quiz-launch" id="quiz-launch" type="button" aria-label="Jouer au Leonida Quiz" title="Jouer au Leonida Quiz"></button>
 <div class="quiz-shade" id="quiz-shade" role="dialog" aria-modal="true" aria-label="Le Grand Quiz GTA" aria-hidden="true">
   <div class="quiz-stage" id="quiz-stage" style="--quiz-image:url('leonida-quiz-decor-TV.png')">
@@ -123,7 +132,7 @@ const names={easy:'Débutant',medium:'Confirmé',hard:'Expert'};
 const overlay=document.getElementById('quiz-shade'),ui=document.getElementById('quiz-ui'),curtain=document.getElementById('quiz-curtain');
 let pseudo='',level='easy',deck=[],pos=0,score=0,locked=false;
 const clean=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function getScores(){try{return JSON.parse(localStorage.getItem('leonida-top5-v1')||'[]')}catch{return []}}
+function getScores(){try{const data=JSON.parse(localStorage.getItem('leonida-top5-v1')||'[]');return Array.isArray(data)?data.filter(x=>x&&typeof x.pseudo==='string'&&Number.isFinite(Number(x.score))).sort((a,b)=>Number(b.score)-Number(a.score)).slice(0,5):[]}catch{return []}}
 function top5(){const scores=getScores();for(const id of ['quiz-top5','quiz-home-top5']){const el=document.getElementById(id);if(!el)continue;el.replaceChildren();for(let i=0;i<5;i++){const row=document.createElement('div');row.className='score-row';const name=document.createElement('span'),pts=document.createElement('span');name.textContent=scores[i]?.pseudo||'—';pts.textContent=scores[i]?scores[i].score+' pts':'';row.append(name,pts);el.append(row)}}}
 function saveScore(){let scores=getScores();let old=scores.find(s=>s.pseudo.toLocaleLowerCase('fr')===pseudo.toLocaleLowerCase('fr'));if(old){if(score>old.score){old.score=score;old.level=names[level]}}else{scores.push({pseudo,score,level:names[level]})}scores.sort((a,b)=>b.score-a.score||a.pseudo.localeCompare(b.pseudo));localStorage.setItem('leonida-top5-v1',JSON.stringify(scores.slice(0,5)));top5()}
 function setup(){ui.innerHTML='<div class="quiz-panel"><h2>LEONIDA QUIZ</h2><p>10 questions sur toute la saga GTA</p><input id="quiz-name" maxlength="20" placeholder="Votre pseudo" autocomplete="nickname" aria-label="Votre pseudo"><div class="quiz-levels"><button data-level="easy" class="active">Débutant</button><button data-level="medium">Confirmé</button><button data-level="hard">Expert</button></div><button id="quiz-start">COMMENCER</button><p class="quiz-small" id="quiz-msg">Choisissez votre niveau</p></div>';level='easy';ui.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>{level=b.dataset.level;ui.querySelectorAll('[data-level]').forEach(x=>x.classList.toggle('active',x===b))});document.getElementById('quiz-start').onclick=()=>{pseudo=document.getElementById('quiz-name').value.trim().replace(/\s+/g,' ').slice(0,20);if(pseudo.length<2){document.getElementById('quiz-msg').textContent='Choisissez un pseudo de 2 à 20 caractères.';return}const pool=bank.filter(q=>q.level===level);deck=[...pool];for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]]}deck=deck.slice(0,10);pos=0;score=0;ask()}}
@@ -131,7 +140,7 @@ function ask(){locked=false;const q=deck[pos];ui.innerHTML='<div class="quiz-pan
 function finish(){saveScore();ui.innerHTML='<div class="quiz-panel"><h2>FIN DE PARTIE</h2><p>'+clean(pseudo)+', vous marquez <strong>'+score+' points</strong> sur '+(10*points[level])+'.</p><p>Morticia vous attend pour une revanche !</p><button id="quiz-again">REJOUER</button></div>';document.getElementById('quiz-again').onclick=setup}
 function open(){overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');top5();setup();curtain.classList.remove('up');curtain.classList.add('down');setTimeout(()=>{curtain.classList.remove('down');curtain.classList.add('up')},1250)}
 function close(){curtain.classList.remove('up');curtain.classList.add('down');setTimeout(()=>{overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');curtain.classList.remove('down')},900)}
-top5();document.getElementById('quiz-launch').onclick=open;document.getElementById('quiz-exit').onclick=close;document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close()});
+top5();window.addEventListener('storage',e=>{if(e.key==='leonida-top5-v1')top5()});document.getElementById('quiz-launch').onclick=open;document.getElementById('quiz-exit').onclick=close;document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close()});
 })();
 </script>
 </body>
