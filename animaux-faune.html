@@ -1,0 +1,120 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Faune — Le Carnet de Leonida</title><style>
+*{box-sizing:border-box}body{margin:0;background:#16051e;color:#fff;font-family:Georgia,serif}.scroll{overflow-x:auto}.scene{position:relative;max-width:1673px;margin:auto}.scene>img{display:block;width:100%;height:auto}.menu{position:absolute;left:0;top:23.8%;width:100%;height:6.6%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.35%;padding:.25% .55%;z-index:10;background:#160920;border-top:2px solid #f95dd7;border-bottom:2px solid #f95dd7;box-shadow:0 0 14px #f43cb977}.menu a{display:flex;align-items:center;justify-content:center;min-width:0;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:6px;color:#fff3fb;text-decoration:none;text-align:center;font:italic 700 clamp(9px,1.17vw,18px)/1.1 Georgia,serif;text-shadow:0 1px 3px #000}.menu a:hover,.menu a:focus-visible{box-shadow:0 0 13px #ff5aca;outline:none}.tab{position:absolute;top:35.2%;height:6.5%;border:0;background:transparent;cursor:pointer;z-index:2}.tab:focus-visible,.row:focus-visible{outline:2px solid #fff}.tab[aria-selected=true]{box-shadow:inset 0 0 20px #ff33dc77;border-radius:12px}.row{position:absolute;left:31.5%;width:65.3%;height:7%;border:0;background:transparent;cursor:pointer;z-index:2}.row:hover{background:#ff60da1b;border-radius:9px}.label{position:absolute;left:39%;width:48%;height:7%;display:flex;align-items:center;pointer-events:none;color:#fff4ed;text-shadow:1px 2px 4px #000;font-size:clamp(11px,2vw,28px);font-style:italic}.label small{display:block;font-size:.55em;font-style:normal;color:#ffcf88;margin-top:3px}.note{text-align:center;padding:12px;font:13px Arial,sans-serif;color:#d4b5d6}.back{position:fixed;inset:0;background:#09020cdb;display:none;align-items:center;justify-content:center;padding:18px;z-index:30}.dialog{width:min(720px,100%);max-height:90vh;overflow:auto;background:linear-gradient(150deg,#351043,#10091b);border:2px solid #ef8cda;box-shadow:0 0 32px #f328b96e;border-radius:16px;padding:24px}.dialog h2{color:#ffd28c}.portrait{width:150px;height:180px;object-fit:cover;border:2px solid #d7a35e;border-radius:10px;float:left;margin:0 20px 12px 0}.detail-line{margin:9px 0;line-height:1.55}.detail-line strong{color:#ffd28c}.clear{clear:both}.row-photo{position:absolute;left:32.5%;width:6.2%;height:5.1%;object-fit:cover;border:1px solid #d7a35e;border-radius:5px;pointer-events:none;z-index:3}.dialog p{line-height:1.6}.dialog button{background:#3c1749;border:1px solid #ff84df;color:white;border-radius:8px;padding:10px 20px;cursor:pointer;font:inherit}.close{float:right}.delete-area{clear:both;margin-top:20px;padding-top:14px;border-top:1px solid #76517e}.delete-area input{display:block;width:100%;margin:8px 0;padding:10px;background:#170b22;color:white;border:1px solid #e49bd9;border-radius:6px}.delete-area label{display:block;margin-top:10px}.delete-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.delete-status{font:14px Arial,sans-serif;color:#ffd28c}.delete-area[hidden],.delete-auth[hidden]{display:none}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:12px 18px;background:#260a34;border:1px solid #f68be9;border-radius:10px;display:none;z-index:40;text-align:center}@media(max-width:700px){.scene{min-width:760px}.menu a{font-size:10px}.label{font-size:16px}}
+
+/* Tableau rénové : décor original intact sous le bandeau, tableau doré masqué */
+.menu{grid-template-columns:repeat(7,minmax(0,1fr));gap:.35%;}
+.menu a[aria-current="page"]{border-color:#ffacee;box-shadow:0 0 13px #ff5aca,inset 0 0 9px #ff5aca55}
+.board{position:absolute;z-index:8;left:30.7%;top:31.3%;width:67.8%;height:63%;padding:1% 1.2%;display:flex;flex-direction:column;gap:1.5%;background:#160920;border-radius:9px;box-shadow:none}
+.board-count{flex:none;text-align:center;font:italic bold clamp(13px,1.65vw,27px)/1.15 Georgia,serif;color:#fff3fb;text-shadow:0 0 9px #fa5cc9}
+.board-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) 9%;gap:.65%;flex:none;min-height:11%}
+.board-controls button{min-width:0;cursor:pointer;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:7px;color:#fff3fb;font:italic bold clamp(9px,1.25vw,19px)/1.1 Georgia,serif;text-shadow:0 1px 3px #000;box-shadow:inset 0 0 8px #ff5aca22}
+.board-controls button:hover,.board-controls button:focus-visible,.board-controls button[aria-selected="true"]{border-color:#ffacee;box-shadow:0 0 13px #ff5aca,inset 0 0 9px #ff5aca55;outline:none}
+.board-controls .expand{font:normal bold clamp(18px,2vw,30px)/1 Arial,sans-serif}
+.people-list{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:1.5%;padding:1% .4%;scrollbar-color:#c86da9 #1b0a29}
+.person-item{width:100%;min-height:72px;display:flex;align-items:center;gap:2%;padding:1% 2%;border:0;border-radius:9px;background:#281333;color:#fff3fb;text-align:left;cursor:pointer;font:italic bold clamp(13px,1.5vw,23px) Georgia,serif}
+.person-item:hover,.person-item:focus-visible{background:#3c1b49;box-shadow:0 0 10px #ff5aca77;outline:1px solid #ffacee}
+.person-item img,.person-placeholder{width:11%;min-width:45px;max-width:100px;aspect-ratio:4/3;object-fit:cover;border-radius:5px;background:#160920}
+.person-item small{display:block;font:normal clamp(10px,.9vw,15px) Arial,sans-serif;color:#ffc4e6;margin-top:5px}
+.people-empty{padding:3%;text-align:center;color:#ffe1ed;font:clamp(12px,1.2vw,18px) Arial,sans-serif}
+.board.expanded{position:fixed;inset:0;width:100vw;height:100dvh;left:0;top:0;z-index:100;padding:2%;border-radius:0;gap:12px}
+.board.expanded .board-count{font-size:clamp(20px,3vw,36px)}
+.board.expanded .board-controls{min-height:65px;gap:12px}
+.board.expanded .board-controls button{font-size:clamp(13px,1.5vw,22px)}
+.board.expanded .person-item{min-height:90px;font-size:clamp(17px,2vw,28px)}
+body.board-open{overflow:hidden}
+@media(max-width:700px){.board-count{font-size:15px}.board-controls button{font-size:10px}.board-controls .expand{font-size:20px}.board{gap:7px}.people-list{gap:8px}}
+
+/* Tableau Animaux domestiques : mêmes couleurs et mêmes fiches que Personnages. */
+.board{left:49%;top:32%;width:43%;height:62%;gap:2%;padding:1.1%}
+.board-controls{display:flex;justify-content:flex-end;min-height:8%;height:8%}
+.board-controls .expand{width:12%;min-width:38px;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:7px;color:white;cursor:pointer}
+.board-count{font-size:clamp(12px,1.25vw,20px)}
+.board-heading{text-align:center;font:italic bold clamp(16px,1.8vw,28px) Georgia,serif;color:#fff3fb;text-shadow:0 0 9px #fa5cc9}
+.board.expanded .board-heading{font-size:clamp(22px,3vw,36px)}
+.people-list{gap:9px}
+.person-item{min-height:68px;font-size:clamp(12px,1.3vw,21px)}
+.board.expanded{left:0;top:0;width:100vw;height:100dvh}
+.board.expanded .board-controls{height:65px;min-height:65px}
+.board.expanded .board-controls .expand{width:65px}
+
+/* Calage exact sur le PNG validé (1721 × 914). */
+.menu{top:20.8%;height:6.5%;padding:.25% .55%;}
+.board{left:54%;top:32%;width:33.2%;height:54.8%;padding:1% 1.1%;gap:2%;background:#190820;border-radius:9px;box-shadow:none;}
+.board-count{font:italic bold clamp(13px,1.4vw,22px)/1.3 Georgia,serif;color:#ffce8e;text-shadow:0 0 8px #fa5cc9;}
+.board-controls{height:8%;min-height:8%;}
+.people-list{padding:1% .5%;gap:8px;}
+.person-item{min-height:56px;padding:1% 2%;font-size:clamp(12px,1.2vw,19px)}
+.person-item img,.person-placeholder{width:13%;max-width:80px;min-width:42px;}
+.board.expanded{left:0;top:0;width:100vw;height:100dvh;background:#160920;padding:2%;gap:12px}
+.board.expanded .board-controls{height:65px;min-height:65px}
+.board.expanded .person-item{min-height:90px}
+
+/* Calage sur le dernier PNG validé : compteur et lignes interactifs. */
+.menu{top:20.8%;height:6.5%}
+.board{left:49.1%;top:29.1%;width:48.1%;height:63.8%;padding:0;background:transparent;box-shadow:none;border:0;gap:0;pointer-events:none}
+.board-count{position:absolute;top:2%;left:31%;width:40%;height:9%;display:flex;align-items:center;justify-content:center;background:#250927;color:#fff3fb;font:italic bold clamp(14px,1.9vw,30px) Georgia,serif;text-shadow:0 0 8px #fa5cc9;pointer-events:none}
+.board-controls{position:absolute;top:0;right:1%;width:7%;height:11%;min-height:0;pointer-events:auto;opacity:.01}
+.board-controls .expand{width:100%;height:100%;min-width:0;border:0;background:transparent}
+.people-list{position:absolute;left:3.1%;top:15.6%;width:92.2%;height:81.7%;padding:0;gap:.4%;overflow:auto;pointer-events:auto;scrollbar-width:none}
+.person-item{flex:none;min-height:0;height:16.2%;padding:0 3%;background:#1a0829dc;border:1px solid #ed7bd3;border-radius:7px;font-size:clamp(13px,1.45vw,24px)}
+.person-item:hover{background:#391047e8}
+.people-empty{display:none}
+.board.expanded{position:fixed;inset:0;width:100vw;height:100dvh;background:#160920;padding:2%;pointer-events:auto}
+.board.expanded .board-count{position:static;width:auto;height:auto;background:transparent}
+.board.expanded .board-controls{position:absolute;right:2%;top:2%;opacity:1;width:60px;height:60px}
+.board.expanded .people-list{position:static;width:100%;height:auto;flex:1;overflow:auto;scrollbar-width:auto;padding-top:70px}
+.board.expanded .person-item{height:auto;min-height:90px}
+
+/* Alignement sur le décor validé avec Mortitia et son chat (1721 × 914). */
+.menu{top:20.8%;height:6.8%;}
+.board{left:42.3%;top:29.7%;width:37.9%;height:61.7%;padding:0;gap:0;background:transparent;border:0;box-shadow:none;pointer-events:none;}
+.board-count{position:absolute;top:3.8%;left:24%;width:54%;height:9%;padding:0 2%;display:flex;align-items:center;justify-content:center;background:#220822;color:#fff3fb;font:italic bold clamp(12px,1.65vw,25px)/1.1 Georgia,serif;text-shadow:0 0 9px #ff65d6;border-radius:5px;pointer-events:none;}
+.board-controls{position:absolute;right:1%;top:12%;width:5%;height:7%;min-height:0;opacity:0;pointer-events:auto;}
+.people-list{position:absolute;left:3.7%;top:17.1%;width:89.6%;height:79.5%;padding:0;gap:0;overflow:auto;scrollbar-width:none;pointer-events:auto;}
+.person-item{flex:none;height:16.5%;min-height:0;margin:0 0 .35%;padding:0 3%;background:#1c0928f2;border:1px solid #ec80da;border-radius:7px;color:white;font-size:clamp(12px,1.4vw,22px);}
+.person-item:hover{background:#3a1249;}
+.people-empty{display:none;}
+.board.expanded{position:fixed;inset:0;width:100vw;height:100dvh;padding:2%;background:#160920;pointer-events:auto;}
+.board.expanded .board-count{position:static;width:auto;height:auto;background:transparent;}
+.board.expanded .board-controls{position:absolute;right:2%;top:2%;width:60px;height:60px;opacity:1;}
+.board.expanded .people-list{position:static;width:100%;height:auto;flex:1;padding-top:65px;overflow:auto;scrollbar-width:auto;}
+.board.expanded .person-item{height:auto;min-height:90px;}
+
+/* Faune : tableau HTML dynamique masquant le tableau imprimé dans le PNG. */
+.menu{top:20.9%;height:7.1%;}
+.board{left:32%;top:30.8%;width:51.3%;height:57%;background:#160920;border:2px solid #f28bda;border-radius:13px;padding:1.5%;pointer-events:auto;box-shadow:0 0 17px #e744bd55;}
+.board-count{position:static;width:100%;height:12%;background:transparent;color:#ffd2ef;font-size:clamp(15px,1.9vw,29px);pointer-events:none;}
+.board-controls{position:absolute;top:2%;right:2%;width:8%;height:10%;opacity:1;z-index:2;}
+.board-controls .expand{background:#2a1035;border:1px solid #e87dce;}
+.people-list{position:static;width:100%;height:85%;padding:1%;gap:1.2%;overflow:auto;scrollbar-width:thin;scrollbar-color:#d87dbd #160920;}
+.person-item{height:auto;min-height:17%;margin:0;padding:1% 3%;font-size:clamp(12px,1.4vw,23px);}
+.people-empty{display:block;}
+.board.expanded{position:fixed;inset:0;width:100vw;height:100dvh;padding:2%;}
+.board.expanded .board-count{height:auto;}
+.board.expanded .people-list{position:static;width:100%;height:auto;flex:1;padding-top:50px;}
+@media(max-width:700px){.board-count{font-size:14px}.person-item{font-size:12px}}
+</style></head><body><div class="scroll"><main class="scene"><img src="animaux-faune.png" alt="Mortitia et un orang-outan dans la jungle de Leonida"><nav class="menu" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="admin.html">Administration</a></nav>
+<section id="board" class="board" aria-label="Tableau de la faune">
+<div id="personCount" class="board-count" aria-live="polite">Chargement des animaux…</div>
+<div id="tabs" class="board-controls" role="group" aria-label="Agrandissement du tableau"></div>
+<div id="rows" class="people-list" aria-live="polite"></div>
+</section></main></div><div class="back" id="back" role="dialog" aria-modal="true" aria-labelledby="title"><article class="dialog"><button class="close" id="close">Fermer</button><h2 id="title"></h2><div id="details"></div><div id="deleteArea" class="delete-area" hidden><button type="button" id="deleteTrigger">Supprimer cet animal</button><div id="deleteAuth" class="delete-auth" hidden><label for="deleteToken">Jeton administrateur Cloudflare</label><input id="deleteToken" type="password" autocomplete="off" spellcheck="false" placeholder="Saisir le jeton administrateur"><div class="delete-actions"><button type="button" id="deleteToggle">Afficher le jeton</button><button type="button" id="deleteConfirm">Confirmer la suppression</button><button type="button" id="deleteCancel">Annuler</button></div><p id="deleteStatus" class="delete-status" role="status" aria-live="polite"></p></div></div><p><button id="return">Retour à la liste</button></p></article></div><div id="toast" class="toast" role="status"></div><script>
+const categories=[{name:'Faune'}];
+const entries={0:[]};let active=0;
+const tabs=document.getElementById('tabs'),rows=document.getElementById('rows'),back=document.getElementById('back'),board=document.getElementById('board'),personCount=document.getElementById('personCount');
+function showToast(t){const el=document.getElementById('toast');el.textContent=t;el.style.display='block';clearTimeout(window.timer);window.timer=setTimeout(()=>el.style.display='none',3000)}
+
+const expand=document.createElement('button');expand.type='button';expand.className='expand';expand.textContent='□';expand.title='Agrandir le tableau';expand.setAttribute('aria-label','Agrandir le tableau');expand.setAttribute('aria-pressed','false');tabs.appendChild(expand);
+function toggleBoard(force){const expanded=typeof force==='boolean'?force:!board.classList.contains('expanded');board.classList.toggle('expanded',expanded);document.body.classList.toggle('board-open',expanded);expand.textContent=expanded?'×':'□';expand.title=expanded?'Réduire le tableau':'Agrandir le tableau';expand.setAttribute('aria-label',expand.title);expand.setAttribute('aria-pressed',String(expanded))}
+expand.addEventListener('click',()=>toggleBoard());document.addEventListener('keydown',e=>{if(e.key==='Escape'&&board.classList.contains('expanded')&&back.style.display!=='flex')toggleBoard(false)});
+function render(){rows.replaceChildren();const items=entries[active];personCount.textContent=items.length+' '+(items.length===1?'animal':'animaux');if(!items.length){const empty=document.createElement('div');empty.className='people-empty';empty.textContent='';rows.appendChild(empty);return}items.forEach(entry=>{const btn=document.createElement('button');btn.type='button';btn.className='person-item';btn.setAttribute('aria-label','Voir la fiche de '+entry.name);btn.addEventListener('click',()=>open(entry));if(entry.image){const img=document.createElement('img');img.src=entry.image;img.alt='';img.loading='lazy';btn.appendChild(img)}else{const ph=document.createElement('span');ph.className='person-placeholder';btn.appendChild(ph)}const label=document.createElement('span');label.textContent=entry.name;btn.appendChild(label);rows.appendChild(btn)})}
+let currentPerson=null;function open(entry){currentPerson=entry;resetDelete();document.getElementById("deleteArea").hidden=!entry.id;document.getElementById('title').textContent=entry.name;let d=document.getElementById('details');d.replaceChildren();if(entry.image){let img=document.createElement('img');img.className='portrait';img.src=entry.image;img.alt='Photo de '+entry.name+' (extrait du décor validé)';d.appendChild(img)}for(const [titre,contenu] of [['Catégorie',entry.role],['Description',entry.description],['Habitat / lieux connus',entry.lieux]]){let p=document.createElement('p');p.className='detail-line';let strong=document.createElement('strong');strong.textContent=titre+' : ';p.appendChild(strong);p.appendChild(document.createTextNode(contenu||'Non renseigné'));d.appendChild(p)}let clear=document.createElement('div');clear.className='clear';d.appendChild(clear);let note=document.createElement('p');note.style.fontSize='12px';note.style.color='#cbb7d2';note.textContent=entry.published?'Fiche publiée depuis l’administration du Carnet de Leonida.':'Biographie : informations officielles Rockstar Games. Portrait : illustration du site.';d.appendChild(note);back.style.display='flex';document.getElementById('close').focus()}function close(){back.style.display='none';currentPerson=null;resetDelete()}document.getElementById('close').onclick=close;document.getElementById('return').onclick=close;back.onclick=e=>{if(e.target===back)close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+async function loadPeople(){try{const res=await fetch('https://gta6worker.michelmalandain.workers.dev/animaux',{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();if(!Array.isArray(data.animaux))throw Error('Format inattendu');entries[0]=[];for(const item of data.animaux){const kind=String(item.kind||'').trim();if(kind.toLocaleLowerCase('fr')!=='faune')continue;const entry={name:item.name||'Animal sans nom',role:kind,image:item.image||'',description:item.summary||'',lieux:item.place||'',published:true,id:item.id};entries[0].push(entry)}entries[0].sort((a,b)=>a.name.localeCompare(b.name,'fr'));render();}catch(e){personCount.textContent='Chargement indisponible : '+e.message}}
+const deleteArea=document.getElementById('deleteArea'),deleteAuth=document.getElementById('deleteAuth'),deleteToken=document.getElementById('deleteToken'),deleteTrigger=document.getElementById('deleteTrigger'),deleteConfirm=document.getElementById('deleteConfirm'),deleteStatus=document.getElementById('deleteStatus'),deleteToggle=document.getElementById('deleteToggle');
+function resetDelete(){deleteAuth.hidden=true;deleteToken.value='';deleteToken.type='password';deleteToggle.textContent='Afficher le jeton';deleteStatus.textContent='';deleteConfirm.disabled=false;deleteTrigger.disabled=false}
+deleteTrigger.onclick=()=>{deleteAuth.hidden=false;deleteToken.focus()};
+document.getElementById('deleteCancel').onclick=()=>{resetDelete();deleteTrigger.focus()};
+deleteToggle.onclick=()=>{deleteToken.type=deleteToken.type==='password'?'text':'password';deleteToggle.textContent=deleteToken.type==='password'?'Afficher le jeton':'Masquer le jeton'};
+deleteConfirm.onclick=async()=>{if(!currentPerson||!currentPerson.id)return;const person=currentPerson;const token=deleteToken.value.trim();if(!token){deleteStatus.textContent='Saisis ton jeton administrateur.';deleteToken.focus();return}if(!confirm('Supprimer définitivement « '+person.name+' » de Cloudflare ?'))return;deleteConfirm.disabled=true;deleteStatus.textContent='Suppression en cours sur Cloudflare…';try{const res=await fetch('https://gta6worker.michelmalandain.workers.dev/animaux/'+encodeURIComponent(person.id),{method:'DELETE',headers:{Authorization:'Bearer '+token},cache:'no-store'});let data={};try{data=await res.json()}catch{}if(!res.ok||data.ok!==true)throw Error(res.status===401?'Jeton administrateur refusé (401).':data.error||'Suppression refusée (HTTP '+res.status+').');for(const list of Object.values(entries)){const i=list.findIndex(x=>x.id===person.id);if(i>=0)list.splice(i,1)}close();render();showToast('Animal supprimé de Cloudflare.')}catch(err){deleteStatus.textContent=err.message;deleteConfirm.disabled=false}};
+loadPeople();render();
+</script></body></html>
