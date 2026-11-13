@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Animaux — Le Carnet de Leonida</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#16051e;color:#fff;font-family:Georgia,serif}
+.scroll{overflow-x:auto}
+.scene{position:relative;max-width:1673px;margin:auto}
+.scene>img{display:block;width:100%;height:auto}
+.menu{position:absolute;left:0;top:17.24%;width:100%;height:6.6%;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.35%;padding:.25% .55%;z-index:10;background:#160920;border-top:2px solid #f95dd7;border-bottom:2px solid #f95dd7;box-shadow:0 0 14px #f43cb977}
+.menu a{display:flex;align-items:center;justify-content:center;min-width:0;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:6px;color:#fff3fb;text-decoration:none;text-align:center;font:italic 700 clamp(9px,1.17vw,18px)/1.1 Georgia,serif;text-shadow:0 1px 3px #000}
+.menu a:hover,.menu a:focus-visible,.menu a[aria-current="page"]{box-shadow:0 0 13px #ff5aca;outline:none}
+@media(max-width:700px){.scene{min-width:760px}.menu a{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="scroll"><main class="scene">
+<img src="animaux.png" alt="Marais de Leonida au coucher du soleil avec Mortitia, un alligator et un flamant rose">
+<nav class="menu" aria-label="Navigation principale">
+<a href="index.html">Accueil</a>
+<a href="actualites.html">Actualités</a>
+<a href="missions.html">Missions</a>
+<a href="personnages.html">Personnages</a>
+<a href="animaux.html" aria-current="page">Animaux</a>
+<a href="objets.html">Objets</a>
+<a href="admin.html">Administration</a>
+</nav>
+</main></div>
+</body></html>
