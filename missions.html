@@ -39,7 +39,7 @@
 @media(max-width:650px){.mission-count{font-size:14px}.hotspot.tab{font-size:13px}}
 
 /* Agrandissement du tableau uniquement, sans modifier les missions. */
-.missions-expand{position:absolute;z-index:12;right:2.6%;top:27.4%;width:2.7%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:0;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:5px;color:#fff3fb;cursor:pointer;font:700 clamp(14px,1.6vw,24px) Arial,sans-serif;box-shadow:0 0 7px #ff5aca55}
+.missions-expand{position:absolute;z-index:12;left:91%;top:31%;width:6%;height:6.5%;display:flex;align-items:center;justify-content:center;padding:0;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:5px;color:#fff3fb;cursor:pointer;font:700 clamp(22px,2.5vw,38px) Arial,sans-serif;box-shadow:0 0 7px #ff5aca55}
 .missions-expand:hover,.missions-expand:focus-visible{box-shadow:0 0 13px #ff5aca;outline:none}
 .scene.missions-expanded{position:fixed;inset:0;z-index:100;width:100%;max-width:none;height:100dvh;background:#170a25;overflow:hidden}
 .scene.missions-expanded>img,.scene.missions-expanded .menu-gta{display:none}
@@ -60,8 +60,8 @@
 </nav>
 <button type="button" id="missionsExpand" class="missions-expand" aria-label="Agrandir le tableau des missions" title="Agrandir le tableau">□</button>
 <div class="mission-count" id="missionInfo" role="status" aria-live="polite">Chargement du nombre de missions…</div>
-<button class="hotspot tab" style="left:34%;width:30%" id="mainTab" aria-label="Missions principales" aria-selected="true" type="button">Missions principales</button>
-<button class="hotspot tab" style="left:65%;width:30%" id="sideTab" aria-label="Missions secondaires" aria-selected="false" type="button">Missions secondaires</button>
+<button class="hotspot tab" style="left:34%;width:27.5%" id="mainTab" aria-label="Missions principales" aria-selected="true" type="button">Missions principales</button>
+<button class="hotspot tab" style="left:62.5%;width:27.5%" id="sideTab" aria-label="Missions secondaires" aria-selected="false" type="button">Missions secondaires</button>
 <div id="missionList" class="mission-list" aria-live="polite"><div class="mission-empty">Chargement des missions…</div></div>
 </main></div><div id="toast" class="toast" role="status"></div>
 <div id="overlay" class="dialog-back" role="dialog" aria-modal="true" aria-labelledby="missionTitle"><article class="dialog"><button class="close" id="close" type="button">Fermer</button><span class="badge" id="missionKind"></span><h2 id="missionTitle"></h2><img id="missionImage" class="mission-image" alt="Illustration de la mission" hidden><p id="missionPlace"></p><p id="missionSummary" style="white-space:pre-wrap"></p><button type="button" id="spoilerToggle" aria-expanded="false" hidden>SPOILER SOLUTION</button><div id="spoilerVideo" class="spoiler-video"><iframe id="solutionFrame" title="Solution vidéo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div><div class="delete-area"><button type="button" id="deleteTrigger" class="delete-trigger">Supprimer cette mission</button><div id="deleteAuth" class="delete-auth" hidden><label for="deleteToken">Jeton administrateur Cloudflare</label><input id="deleteToken" type="password" autocomplete="off" spellcheck="false" placeholder="Saisir le jeton administrateur"><div class="delete-actions"><button type="button" id="deleteToggle">Afficher le jeton</button><button type="button" id="deleteConfirm" class="delete-trigger">Confirmer la suppression</button><button type="button" id="deleteCancel">Annuler</button></div><p id="deleteStatus" class="delete-status" role="status" aria-live="polite"></p></div></div><p><button id="closeBottom" type="button">Retour à la liste</button></p></article></div>
