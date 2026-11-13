@@ -109,6 +109,17 @@ body.board-open{overflow:hidden}
 .person-item{height:auto;min-height:66px;padding:8px 10px;}
 .board.expanded{left:0;top:0;width:100vw;height:100dvh;}
 .board.expanded .people-list{height:auto;flex:1;}
+
+/* Nouvelle image validée : Mortitia de profil sur son dauphin (1536 × 1024).
+   Bandeau HTML officiel par-dessus les boutons décoratifs de l'image. */
+.menu{top:28.65%;height:9.3%;padding:.6% .7%;background:#160920;border-top:2px solid #f95dd7;border-bottom:2px solid #f95dd7;gap:.35%;box-shadow:0 0 12px #f43cb9;}
+.menu a{font-size:clamp(10px,1.18vw,18px);}
+.board{left:48%;top:41.2%;width:49.2%;height:54%;padding:1.4%;background:#160920f5;border:2px solid #f28bda;border-radius:14px;box-shadow:0 0 15px #e744bd66;gap:1%;}
+.board-count{height:12%;}
+.people-list{height:85%;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;grid-auto-rows:minmax(60px,auto);}
+.person-item{min-height:60px;}
+.board.expanded{left:0;top:0;width:100vw;height:100dvh;padding:2%;background:#160920;}
+.board.expanded .people-list{height:auto;flex:1;}
 </style></head><body><div class="scroll"><main class="scene"><img src="animaux-marins.png" alt="Mortitia et un dauphin dans les eaux de Leonida"><nav class="menu" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="admin.html">Administration</a></nav>
 <section id="board" class="board" aria-label="Tableau des animaux marins">
 <div id="personCount" class="board-count" aria-live="polite">Chargement des animaux…</div>
