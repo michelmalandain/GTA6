@@ -27,7 +27,7 @@
 .delete-auth .delete-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
 .delete-auth .delete-status{color:#ffe0b0;font:14px Arial,sans-serif;min-height:20px;margin:10px 0 0}
 /* Ajustements validés : panneau sans dorures ni flèches, onglets assortis au menu. */
-.scene::after{content:"";position:absolute;z-index:3;left:30.8%;top:27.1%;width:68.6%;height:63%;background:#170a25;border:0;border-radius:0;pointer-events:none}
+.scene::after{content:"";position:absolute;z-index:3;left:30.8%;top:27.1%;width:68.6%;height:66%;background:#170a25;border:0;border-radius:0;pointer-events:none}
 .mission-count{position:absolute;z-index:8;left:32%;top:27.2%;width:66%;height:3.3%;display:flex;align-items:center;justify-content:center;text-align:center;font:700 clamp(13px,1.65vw,26px)/1.15 Georgia,serif;color:#fff0fa;text-shadow:0 0 9px #ff5aca}
 .hotspot.tab{top:31%;height:6.5%;z-index:8;display:flex;align-items:center;justify-content:center;padding:0 1%;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:6px;color:#fff3fb;font:italic 700 clamp(12px,1.4vw,22px)/1.1 Georgia,serif;text-shadow:0 1px 3px #000;box-shadow:inset 0 0 8px #ff5aca22}
 .hotspot.tab:hover,.hotspot.tab:focus-visible,.hotspot.tab[aria-selected="true"]{border-color:#ffacee;box-shadow:0 0 13px #ff5aca,inset 0 0 9px #ff5aca55;outline:none}
@@ -37,10 +37,28 @@
 .mission-item img,.mission-item .placeholder{border:0}
 .mission-empty{border:0;background:#261132}
 @media(max-width:650px){.mission-count{font-size:14px}.hotspot.tab{font-size:13px}}
+
+/* Agrandissement du tableau uniquement, sans modifier les missions. */
+.missions-expand{position:absolute;z-index:12;right:2.6%;top:27.4%;width:2.7%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:0;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:5px;color:#fff3fb;cursor:pointer;font:700 clamp(14px,1.6vw,24px) Arial,sans-serif;box-shadow:0 0 7px #ff5aca55}
+.missions-expand:hover,.missions-expand:focus-visible{box-shadow:0 0 13px #ff5aca;outline:none}
+.scene.missions-expanded{position:fixed;inset:0;z-index:100;width:100%;max-width:none;height:100dvh;background:#170a25;overflow:hidden}
+.scene.missions-expanded>img,.scene.missions-expanded .menu-gta{display:none}
+.scene.missions-expanded::after{display:none}
+.scene.missions-expanded .mission-count{left:4%;top:3%;width:92%;height:7%;font-size:clamp(18px,2.2vw,34px)}
+.scene.missions-expanded .hotspot.tab{top:12%;height:8%;font-size:clamp(15px,1.6vw,26px)}
+.scene.missions-expanded #mainTab{left:4%!important;width:45%!important}
+.scene.missions-expanded #sideTab{left:51%!important;width:45%!important}
+.scene.missions-expanded .mission-list{left:4%;top:23%;width:92%;height:73%;padding:1%}
+.scene.missions-expanded .missions-expand{position:absolute;top:3%;right:1%;width:38px;height:38px;font-size:24px}
+.scene.missions-expanded .mission-item{min-height:85px;padding:10px 18px}
+.scene.missions-expanded .mission-item img,.scene.missions-expanded .mission-item .placeholder{width:110px}
+.scene.missions-expanded .mission-item .name{font-size:clamp(18px,2vw,30px)}
+@media(max-width:650px){.missions-expand{min-width:24px;min-height:24px}}
 </style></head><body><div class="scroll"><main class="scene" aria-label="Page des missions GTA VI, démonstration avec GTA V"><img src="mission.png" alt="Décor validé : Vice City, Morticia, menu et liste des missions">
 <nav class="menu-gta" aria-label="Navigation principale">
 <a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="admin.html">Administration</a>
 </nav>
+<button type="button" id="missionsExpand" class="missions-expand" aria-label="Agrandir le tableau des missions" title="Agrandir le tableau">□</button>
 <div class="mission-count" id="missionInfo" role="status" aria-live="polite">Chargement du nombre de missions…</div>
 <button class="hotspot tab" style="left:34%;width:30%" id="mainTab" aria-label="Missions principales" aria-selected="true" type="button">Missions principales</button>
 <button class="hotspot tab" style="left:65%;width:30%" id="sideTab" aria-label="Missions secondaires" aria-selected="false" type="button">Missions secondaires</button>
@@ -91,5 +109,18 @@ main.addEventListener('click',()=>switchTab('main'));side.addEventListener('clic
 spoilerToggle.addEventListener('click',()=>{if(spoilerVideo.style.display==='block'){hideSolution()}else if(currentVideo){spoilerVideo.style.display='block';solutionFrame.src=currentVideo;spoilerToggle.setAttribute('aria-expanded','true');spoilerToggle.textContent='Masquer la solution'}});
 document.getElementById('close').onclick=closeMission;document.getElementById('closeBottom').onclick=closeMission;overlay.addEventListener('click',e=>{if(e.target===overlay)closeMission()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.style.display==='flex')closeMission()});
 async function loadMissions(){try{const res=await fetch(API,{cache:'no-store'});if(!res.ok)throw new Error('HTTP '+res.status);const data=await res.json();if(!Array.isArray(data.missions))throw new Error('Format de données inattendu');missions=data.missions;render();document.getElementById('missionInfo').textContent=missions.length+' mission'+(missions.length>1?'s':'')+' enregistrée'+(missions.length>1?'s':'')+' dans Le Carnet de Leonida.'}catch(err){list.replaceChildren();const div=document.createElement('div');div.className='mission-empty';div.textContent='Impossible de charger les missions depuis Cloudflare. Réessaie en actualisant la page.';list.append(div);document.getElementById('missionInfo').textContent='Erreur de chargement : '+err.message}}
+
+const missionsExpand=document.getElementById('missionsExpand');
+const missionsScene=document.querySelector('.scene');
+function setMissionsExpanded(expanded){
+  missionsScene.classList.toggle('missions-expanded',expanded);
+  missionsExpand.textContent=expanded?'×':'□';
+  missionsExpand.setAttribute('aria-label',expanded?'Réduire le tableau des missions':'Agrandir le tableau des missions');
+  missionsExpand.title=expanded?'Réduire le tableau':'Agrandir le tableau';
+  document.body.style.overflow=expanded?'hidden':'';
+}
+missionsExpand.addEventListener('click',()=>setMissionsExpanded(!missionsScene.classList.contains('missions-expanded')));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&missionsScene.classList.contains('missions-expanded')&&overlay.style.display!=='flex')setMissionsExpanded(false)});
+
 loadMissions();
 </script></body></html>
