@@ -1,0 +1,461 @@
+[
+  {
+    "id": 1,
+    "nom": "Fusil d'assaut Duke Arms 556",
+    "categorie": "Fusils d'assaut",
+    "modele": "Colt M4A1",
+    "image": "images/armes/arme-01.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/carabine-de-service",
+    "illustration_gta5": false
+  },
+  {
+    "id": 2,
+    "nom": "Fusil de chasse Moreland 850",
+    "categorie": "Fusils de chasse",
+    "modele": "Remington 870",
+    "image": "images/armes/arme-02.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/moreland-850",
+    "illustration_gta5": false
+  },
+  {
+    "id": 3,
+    "nom": "Fusil d'assaut Shrewsbury AKM",
+    "categorie": "Fusils d'assaut",
+    "modele": "AKM / AK-47",
+    "image": "images/armes/arme-03.jpg",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/fusil-dassaut",
+    "illustration_gta5": false
+  },
+  {
+    "id": 4,
+    "nom": "Carabine Duke Arms AR-15",
+    "categorie": "Fusils d'assaut",
+    "modele": "AR-15 Variante / M4A1 Block II",
+    "image": "images/armes/arme-04.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/carabine-mk-ii",
+    "illustration_gta5": false
+  },
+  {
+    "id": 5,
+    "nom": "Batte de baseball",
+    "categorie": "Mêlée",
+    "modele": "",
+    "image": "images/armes/arme-05.jpg",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/batte-de-baseball",
+    "illustration_gta5": false
+  },
+  {
+    "id": 6,
+    "nom": "Fusil de précision à verrou",
+    "categorie": "Fusils de précision",
+    "modele": "Remington 700 BDL",
+    "image": "images/armes/arme-06.jpg",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/fusil-de-precision-a-verrou",
+    "illustration_gta5": false
+  },
+  {
+    "id": 7,
+    "nom": "Carabine Vom Feuer",
+    "categorie": "Fusils d'assaut",
+    "modele": "Remington R5 RGP / HK416",
+    "image": "images/armes/arme-07.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/carabine",
+    "illustration_gta5": false
+  },
+  {
+    "id": 8,
+    "nom": "Mitrailleuse de combat",
+    "categorie": "LMG",
+    "modele": "M249 SAW",
+    "image": "images/armes/arme-08.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/combat-mg",
+    "illustration_gta5": false
+  },
+  {
+    "id": 9,
+    "nom": "Pistolet mitrailleur compact Hawk & Little",
+    "categorie": "SMG",
+    "modele": "Mini-SMG Scorpion",
+    "image": "images/armes/arme-09.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/pistolet-mitrailleur-compact",
+    "illustration_gta5": true
+  },
+  {
+    "id": 10,
+    "nom": "pied de biche",
+    "categorie": "Mêlée",
+    "modele": "",
+    "image": "images/armes/arme-10.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/pied-de-biche",
+    "illustration_gta5": true
+  },
+  {
+    "id": 11,
+    "nom": "fusil à double canon",
+    "categorie": "Fusils de chasse",
+    "modele": "Stoeger/IGA Longfowler",
+    "image": "images/armes/arme-11.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/fusil-a-double-canon",
+    "illustration_gta5": false
+  },
+  {
+    "id": 12,
+    "nom": "S&M DW9",
+    "categorie": "SMG",
+    "modele": "Brügger & Thomet APC9 K PRO",
+    "image": "images/armes/arme-12.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/dw9",
+    "illustration_gta5": false
+  },
+  {
+    "id": 13,
+    "nom": "Girardi ES9",
+    "categorie": "Armes de poing",
+    "modele": "Beretta 92FS",
+    "image": "images/armes/arme-13.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/girardi-es9",
+    "illustration_gta5": false
+  },
+  {
+    "id": 14,
+    "nom": "Bouteille de feu",
+    "categorie": "Jetable",
+    "modele": "",
+    "image": "images/armes/arme-14.jpg",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/bouteille-incendiaire",
+    "illustration_gta5": false
+  },
+  {
+    "id": 15,
+    "nom": "grenade assourdissante",
+    "categorie": "Jetable",
+    "modele": "",
+    "image": "images/armes/arme-15.png",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/grenade-flash",
+    "illustration_gta5": false
+  },
+  {
+    "id": 16,
+    "nom": "Lampe de poche Vom Feuer",
+    "categorie": "Mêlée",
+    "modele": "Lampe torche Lenser M7R",
+    "image": "images/armes/arme-16.avif",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/lampe-torche",
+    "illustration_gta5": true
+  },
+  {
+    "id": 17,
+    "nom": "balle de golf",
+    "categorie": "Jetable",
+    "modele": "",
+    "image": "images/armes/arme-17.jpg",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/balle-de-golf",
+    "illustration_gta5": false
+  },
+  {
+    "id": 18,
+    "nom": "Club de golf",
+    "categorie": "Mêlée",
+    "modele": "",
+    "image": "images/armes/arme-18.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/club-de-golf",
+    "illustration_gta5": true
+  },
+  {
+    "id": 19,
+    "nom": "Grenade",
+    "categorie": "Jetable",
+    "modele": "Grenade M61",
+    "image": "images/armes/arme-19.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/grenade",
+    "illustration_gta5": true
+  },
+  {
+    "id": 20,
+    "nom": "Lance-grenades Shrewsbury",
+    "categorie": "Lanceurs",
+    "modele": "Milkor MGL",
+    "image": "images/armes/arme-20.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/lance-grenades",
+    "illustration_gta5": false
+  },
+  {
+    "id": 21,
+    "nom": "Marteau",
+    "categorie": "Mêlée",
+    "modele": "",
+    "image": "images/armes/arme-21.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/marteau",
+    "illustration_gta5": false
+  },
+  {
+    "id": 22,
+    "nom": "Pistolet lourd",
+    "categorie": "Armes de poing",
+    "modele": "Variante M1911",
+    "image": "images/armes/arme-22.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/pistolet-lourd",
+    "illustration_gta5": false
+  },
+  {
+    "id": 23,
+    "nom": "Sniper chasseur de Shrewsbury",
+    "categorie": "Fusils de précision",
+    "modele": "Guerre arctique L96A1",
+    "image": "images/armes/arme-23.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/fusil-de-precision-hunter",
+    "illustration_gta5": true
+  },
+  {
+    "id": 24,
+    "nom": "Couteau de chasse",
+    "categorie": "Mêlée",
+    "modele": "",
+    "image": "images/armes/arme-24.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/couteau-de-chasse",
+    "illustration_gta5": false
+  },
+  {
+    "id": 25,
+    "nom": "Jerry-Bidon",
+    "categorie": "Jetable",
+    "modele": "bidon d'essence",
+    "image": "images/armes/arme-25.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/jerry-can",
+    "illustration_gta5": false
+  },
+  {
+    "id": 26,
+    "nom": "Klose K17",
+    "categorie": "Armes de poing",
+    "modele": "Glock 17 / SIG Sauer P320",
+    "image": "images/armes/arme-26.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/klose-k17",
+    "illustration_gta5": false
+  },
+  {
+    "id": 27,
+    "nom": "Faucon et Petit Couteau",
+    "categorie": "Mêlée",
+    "modele": "Couteau UC-RB1",
+    "image": "images/armes/arme-27.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/couteau",
+    "illustration_gta5": true
+  },
+  {
+    "id": 28,
+    "nom": "Poings américains",
+    "categorie": "Mêlée",
+    "modele": "poings américains",
+    "image": "images/armes/arme-28.jpg",
+    "source": "https://www.gtabase.com/fr/weapons/gta-6/knuckle-dusters",
+    "illustration_gta5": false
+  },
+  {
+    "id": 29,
+    "nom": "MAC-11",
+    "categorie": "SMG",
+    "modele": "Ingram MAC-11",
+    "image": "images/armes/arme-29.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/mac-11",
+    "illustration_gta5": false
+  },
+  {
+    "id": 30,
+    "nom": "Fusil compact Micro Draco",
+    "categorie": "Fusils d'assaut",
+    "modele": "Micro Draco",
+    "image": "images/armes/arme-30.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/fusil-compact",
+    "illustration_gta5": false
+  },
+  {
+    "id": 31,
+    "nom": "Micro SMG Shrewsbury",
+    "categorie": "SMG",
+    "modele": "Mini Uzi",
+    "image": "images/armes/arme-31.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/micro-smg",
+    "illustration_gta5": true
+  },
+  {
+    "id": 32,
+    "nom": "Molotov",
+    "categorie": "Jetable",
+    "modele": "",
+    "image": "images/armes/arme-32.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/cocktail-molotov",
+    "illustration_gta5": true
+  },
+  {
+    "id": 33,
+    "nom": "Revolver Hawk & Little Morgan",
+    "categorie": "Armes de poing",
+    "modele": "Smith & Wesson Modèle 629 Classique",
+    "image": "images/armes/arme-33.avif",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/revolver-morgan",
+    "illustration_gta5": false
+  },
+  {
+    "id": 34,
+    "nom": "Pistolet mitrailleur Hawk & Little MP5",
+    "categorie": "SMG",
+    "modele": "Heckler & Koch MP5",
+    "image": "images/armes/arme-34.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/pistolet-mitrailleur",
+    "illustration_gta5": false
+  },
+  {
+    "id": 35,
+    "nom": "Revolver Duke Arms Mustang .357",
+    "categorie": "Armes de poing",
+    "modele": "Colt Python (.357 Magnum)",
+    "image": "images/armes/arme-35.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/revolver-mustang-357",
+    "illustration_gta5": false
+  },
+  {
+    "id": 36,
+    "nom": "Nipper .38",
+    "categorie": "Armes de poing",
+    "modele": "Taureau PT 938 / Bersa Firestorm 380",
+    "image": "images/armes/arme-36.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/nipper-38",
+    "illustration_gta5": false
+  },
+  {
+    "id": 37,
+    "nom": "Clé à pipe",
+    "categorie": "Mêlée",
+    "modele": "",
+    "image": "images/armes/arme-37.avif",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/cle-a-molette",
+    "illustration_gta5": true
+  },
+  {
+    "id": 38,
+    "nom": "Hawk & Little Pistol",
+    "categorie": "Armes de poing",
+    "modele": "Taurus PT92AF",
+    "image": "images/armes/arme-38.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/pistolet",
+    "illustration_gta5": true
+  },
+  {
+    "id": 39,
+    "nom": "Queue de billard",
+    "categorie": "Mêlée",
+    "modele": "",
+    "image": "images/armes/arme-39.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/queue-de-billard",
+    "illustration_gta5": true
+  },
+  {
+    "id": 40,
+    "nom": "Fusil à pompe Shrewsbury",
+    "categorie": "Fusils de chasse",
+    "modele": "Mossberg 590",
+    "image": "images/armes/arme-40.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/weapons/pump-action-shotgun",
+    "illustration_gta5": true
+  },
+  {
+    "id": 41,
+    "nom": "Lance-roquettes Shrewsbury RPG (Lance-roquettes)",
+    "categorie": "Lanceurs",
+    "modele": "RPG-7",
+    "image": "images/armes/arme-41.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/lance-roquettes-rpg",
+    "illustration_gta5": true
+  },
+  {
+    "id": 42,
+    "nom": "Ruger 10/22 Sniper",
+    "categorie": "Fusils de précision",
+    "modele": "Ruger 10/22",
+    "image": "images/armes/arme-42.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/fusil-de-precision-ruger-1022",
+    "illustration_gta5": false
+  },
+  {
+    "id": 43,
+    "nom": "Fusil d'assaut Scar",
+    "categorie": "Fusils d'assaut",
+    "modele": "FN SCAR-H/L",
+    "image": "images/armes/arme-43.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/fusil-dassaut-scar",
+    "illustration_gta5": false
+  },
+  {
+    "id": 44,
+    "nom": "Coil Shocker",
+    "categorie": "Armes de poing",
+    "modele": "Modèle TASER d'entreprise Axon, inspiré des TASER 7, TASER 10 et TASER X26/26P",
+    "image": "images/armes/arme-44.avif",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/chocker",
+    "illustration_gta5": true
+  },
+  {
+    "id": 45,
+    "nom": "Faucon et Petite Grenade Fumigène",
+    "categorie": "Jetable",
+    "modele": "Grenade fumigène M18",
+    "image": "images/armes/arme-45.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/grenade-fumigene",
+    "illustration_gta5": true
+  },
+  {
+    "id": 46,
+    "nom": "fusil harpon",
+    "categorie": "Jetable",
+    "modele": "",
+    "image": "images/armes/arme-46.png",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/fusil-harpon",
+    "illustration_gta5": false
+  },
+  {
+    "id": 47,
+    "nom": "SPP / MP9",
+    "categorie": "SMG",
+    "modele": "Steyr SPP / Brügger & Thomet MP9",
+    "image": "images/armes/arme-47.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/spp-mp9",
+    "illustration_gta5": false
+  },
+  {
+    "id": 48,
+    "nom": "Fusil de précision M1A de Springfield Armory",
+    "categorie": "Fusils de précision",
+    "modele": "Armurerie de Springfield M1A",
+    "image": "images/armes/arme-48.jpg",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/fusil-de-precision-m1a-de-larsenal-de-springfield",
+    "illustration_gta5": false
+  },
+  {
+    "id": 49,
+    "nom": "Bombe collante",
+    "categorie": "Jetable",
+    "modele": "Explosif C-4",
+    "image": "images/armes/arme-49.avif",
+    "source": "https://www.gtabase.com/fr/weapons/gta-6/sticky-bomb",
+    "illustration_gta5": true
+  },
+  {
+    "id": 50,
+    "nom": "Couteau à cran d'arrêt",
+    "categorie": "Mêlée",
+    "modele": "Stylet italien de la Seconde Guerre mondiale",
+    "image": "images/armes/arme-50.avif",
+    "source": "https://www.gtabase.com/fr/armes/gta-6/couteau-a-cran-darret",
+    "illustration_gta5": true
+  },
+  {
+    "id": 51,
+    "nom": "Sans armes (poing)",
+    "categorie": "Mêlée",
+    "modele": "",
+    "image": "images/armes/arme-51.avif",
+    "source": "https://www.gtabase.com/fr/gta-6/armes/combat-a-mains-nues",
+    "illustration_gta5": true
+  }
+]
