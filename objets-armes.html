@@ -1,22 +1,25 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Armurerie — Le Carnet de Leonida</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;background:#13051d;color:#fff;font-family:Georgia,serif}.stage{position:relative;width:min(100%,1670px);margin:auto;overflow:hidden}.stage>img{display:block;width:100%;height:auto}.nav{position:absolute;top:17.65%;left:0;width:100%;height:7.5%;display:grid;grid-template-columns:1fr 1.15fr 1fr 1.4fr 1fr 1fr 1.1fr 1.55fr;gap:.3%;padding:.25% 1%;background:linear-gradient(#170820,#080311);z-index:3}.nav a{display:flex;align-items:center;justify-content:center;min-width:0;color:white;text-decoration:none;font-size:clamp(8px,1.48vw,23px);font-weight:bold;font-style:italic;text-shadow:0 2px 3px #000;border:2px solid #fc65e9;border-radius:18px;background:linear-gradient(#390e4b,#07030c 72%);box-shadow:inset 0 0 9px #d92ed6,0 0 9px #f333c9}.nav a:hover,.nav a:focus-visible{background:#6a176f;outline:1px solid white}.counter{position:absolute;left:37%;top:48%;width:20%;height:6%;display:flex;align-items:center;justify-content:center;border:2px solid #fc65e9;border-radius:18px;background:linear-gradient(#390e4bdf,#07030cde);box-shadow:0 0 12px #f333c9;color:#fff;font-weight:bold;font-size:clamp(11px,1.6vw,26px);text-shadow:0 0 8px #ff65e3;z-index:2}@media(max-width:700px){.nav a{border-width:1px;border-radius:6px;font-size:clamp(6px,1.3vw,10px)}}
-</style></head><body><main class="stage"><img src="objets-armes.png" width="1670" height="942" alt="Mortitia debout en combinaison jaune, katana à la main, dans l'armurerie de Leonida. Panneau de catalogue vide à droite."><nav class="nav" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="activites.html">Activités</a><a href="admin.html">Administration</a></nav><div class="counter" id="armes-total" aria-live="polite">0 arme</div></main><script>
-// Le compteur utilise les données réellement disponibles, sans inventer d'armes.
-(async function(){
-  const urls=['https://gta6worker.michelmalandain.workers.dev/armes','armes.json'];
-  for(const url of urls){
-    try{
-      const response=await fetch(url,{cache:'no-store'});
-      if(!response.ok)continue;
-      const data=await response.json();
-      const list=Array.isArray(data)?data:[data.armes,data.weapons,data.items,data.data].find(Array.isArray);
-      if(!list)continue;
-      const n=list.length;
-      document.getElementById('armes-total').textContent=n+' arme'+(n>1?'s':'');
-      break;
-    }catch(e){}
-  }
-})();
+*{box-sizing:border-box}html,body{margin:0;background:#13051d;color:#fff;font-family:Georgia,serif}
+.stage{position:relative;width:min(100%,1673px);margin:0 auto;overflow:hidden}
+.stage>img{display:block;width:100%;height:auto}
+/* Bandeau HTML identique à la navigation des véhicules, sans boutons peints dans le PNG. */
+.nav{position:absolute;top:17.65%;left:0;width:100%;height:7.5%;display:grid;grid-template-columns:1fr 1.15fr 1fr 1.4fr 1fr 1fr 1.1fr 1.55fr;gap:.3%;padding:.25% 1%;background:linear-gradient(#170820,#080311);z-index:3}
+.nav a{display:flex;align-items:center;justify-content:center;min-width:0;color:white;text-decoration:none;font-size:clamp(8px,1.48vw,23px);font-weight:bold;font-style:italic;text-shadow:0 2px 3px #000;border:2px solid #fc65e9;border-radius:18px;background:linear-gradient(#390e4b,#07030c 72%);box-shadow:inset 0 0 9px #d92ed6,0 0 9px #f333c9}
+.nav a:hover,.nav a:focus-visible{background:#6a176f;outline:1px solid white}
+/* Compteur réel en HTML, placé sous l'enseigne Armurerie. */
+.counter{position:absolute;left:35.4%;top:44%;width:16.8%;height:5.5%;display:flex;align-items:center;justify-content:center;border:2px solid #fc65e9;border-radius:18px;background:linear-gradient(#390e4bdf,#07030cde);box-shadow:0 0 12px #f333c9;color:#fff;font-weight:bold;font-size:clamp(11px,1.6vw,26px);text-shadow:0 0 8px #ff65e3;z-index:2}
+@media(max-width:700px){.nav a{border-width:1px;border-radius:6px;font-size:clamp(6px,1.3vw,10px)}.counter{border-width:1px;border-radius:6px}}
+</style></head><body>
+<main class="stage">
+<img src="objets-armes.png" width="1673" height="940" alt="Armurerie de Leonida : Mortitia en robe blanche, décor néon et espace libre pour le catalogue des armes">
+<nav class="nav" aria-label="Navigation principale">
+<a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="activites.html">Activités</a><a href="admin.html">Administration</a>
+</nav>
+<div class="counter" id="armes-total" aria-live="polite">0 arme</div>
+</main>
+<script>
+// Compteur fondé uniquement sur les données disponibles. Aucun article fictif.
+(async()=>{for(const url of ['https://gta6worker.michelmalandain.workers.dev/armes','armes.json']){try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)continue;const data=await r.json();const list=Array.isArray(data)?data:[data.armes,data.weapons,data.items,data.data].find(Array.isArray);if(!list)continue;const n=list.length;document.getElementById('armes-total').textContent=n+' arme'+(n>1?'s':'');break}catch(e){}}})();
 </script></body></html>
