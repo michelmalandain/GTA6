@@ -8,6 +8,11 @@
 .nav{position:absolute;top:17.65%;left:0;width:100%;height:7.5%;display:grid;grid-template-columns:1fr 1.15fr 1fr 1.4fr 1fr 1fr 1.1fr 1.55fr;gap:.3%;padding:.25% 1%;background:linear-gradient(#170820,#080311);z-index:3}
 .nav a{display:flex;align-items:center;justify-content:center;min-width:0;color:white;text-decoration:none;font-size:clamp(8px,1.48vw,23px);font-weight:bold;font-style:italic;text-shadow:0 2px 3px #000;border:2px solid #fc65e9;border-radius:18px;background:linear-gradient(#390e4b,#07030c 72%);box-shadow:inset 0 0 9px #d92ed6,0 0 9px #f333c9}
 .nav a:hover,.nav a:focus-visible{background:#6a176f;outline:1px solid white}
+/* Catalogue intégré dans le panneau droit du décor, sans modifier le PNG. */
+.catalogue{position:absolute;left:56.5%;top:30.5%;width:39.5%;height:62%;overflow:auto;z-index:2;padding:1.1%;scrollbar-color:#ef72e8 #1b0a25;background:rgba(16,4,27,.16);border-radius:12px}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}.filters select,.filters input{min-width:0;background:#210b31;color:#fff;border:1px solid #f27cdd;border-radius:8px;padding:7px;font:inherit;font-size:clamp(9px,.85vw,14px)}.filters input{flex:1 1 110px}.filters select{flex:1 1 120px}
+.weapon{display:grid;grid-template-columns:30% 1fr;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid #8b448e;background:rgba(16,4,29,.6);margin-bottom:4px;border-radius:7px}.weapon img{width:100%;aspect-ratio:274/154;object-fit:contain;border-radius:6px;background:#100c18}.weapon strong{display:block;color:#fff;font-size:clamp(10px,1.05vw,17px)}.weapon small{display:block;color:#efb8ee;font-size:clamp(8px,.8vw,13px);margin-top:4px}.weapon em{display:block;color:#dfc4df;font-size:clamp(8px,.72vw,12px);font-style:normal;margin-top:3px}.notice{font-size:clamp(8px,.68vw,11px);color:#e5bfe3;margin:4px 0 9px}
+@media(max-width:700px){.catalogue{padding:.5%}.weapon{gap:4px;padding:3px 1px}.filters{gap:2px;margin-bottom:2px}.filters input,.filters select{padding:2px;font-size:8px}.weapon small,.weapon em{font-size:7px}.weapon strong{font-size:8px}}
 /* Compteur réel en HTML, placé sous l'enseigne Armurerie. */
 .counter{position:absolute;left:35.4%;top:44%;width:16.8%;height:5.5%;display:flex;align-items:center;justify-content:center;border:2px solid #fc65e9;border-radius:18px;background:linear-gradient(#390e4bdf,#07030cde);box-shadow:0 0 12px #f333c9;color:#fff;font-weight:bold;font-size:clamp(11px,1.6vw,26px);text-shadow:0 0 8px #ff65e3;z-index:2}
 @media(max-width:700px){.nav a{border-width:1px;border-radius:6px;font-size:clamp(6px,1.3vw,10px)}.counter{border-width:1px;border-radius:6px}}
@@ -17,9 +22,17 @@
 <nav class="nav" aria-label="Navigation principale">
 <a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="activites.html">Activités</a><a href="admin.html">Administration</a>
 </nav>
-<div class="counter" id="armes-total" aria-live="polite">0 arme</div>
+<div class="counter" id="armes-total" aria-live="polite">Chargement…</div>
+<section class="catalogue" aria-label="Catalogue des armes"><div class="filters"><input id="q" placeholder="Rechercher une arme" aria-label="Rechercher"><select id="cat" aria-label="Catégorie"><option value="">Toutes les catégories</option></select></div><div id="weapons"></div></section>
 </main>
 <script>
-// Compteur fondé uniquement sur les données disponibles. Aucun article fictif.
-(async()=>{for(const url of ['https://gta6worker.michelmalandain.workers.dev/armes','armes.json']){try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)continue;const data=await r.json();const list=Array.isArray(data)?data:[data.armes,data.weapons,data.items,data.data].find(Array.isArray);if(!list)continue;const n=list.length;document.getElementById('armes-total').textContent=n+' arme'+(n>1?'s':'');break}catch(e){}}})();
+const container=document.getElementById('weapons'), counter=document.getElementById('armes-total'), q=document.getElementById('q'), cat=document.getElementById('cat');
+const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+fetch('https://gta6worker.michelmalandain.workers.dev/objets').then(r=>{if(!r.ok)throw Error('Worker indisponible');return r.json()}).then(data=>(data.objets||[]).filter(x=>x.kind==='Armes').map(x=>({nom:x.name,categorie:(x.summary||'').match(/^Catégorie : (.*)/)?.[1]||'Armes',modele:x.model||'',image:x.image||''}))).then(items=>{
+ counter.textContent=items.length+' arme'+(items.length>1?'s':'');
+ [...new Set(items.map(x=>x.categorie).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fr')).forEach(c=>{let o=document.createElement('option');o.value=c;o.textContent=c;cat.append(o)});
+ function render(){let term=q.value.toLocaleLowerCase('fr'), category=cat.value;let matches=items.filter(x=>(!category||x.categorie===category)&&(!term||(x.nom+' '+x.categorie+' '+x.modele).toLocaleLowerCase('fr').includes(term)));
+ container.innerHTML=matches.map(x=>`<article class="weapon"><img loading="lazy" src="${escapeHtml(x.image)}" alt="${escapeHtml(x.nom)}"><div><strong>${escapeHtml(x.nom)}</strong><small>${escapeHtml(x.categorie)}</small>${x.modele?`<em>Modèle : ${escapeHtml(x.modele)}</em>`:''}${x.illustration_gta5?'<em>Illustration provisoire GTA V</em>':''}</div></article>`).join('')||'<p>Aucune arme trouvée.</p>'}
+ q.addEventListener('input',render);cat.addEventListener('change',render);render();
+}).catch(()=>{container.textContent='Catalogue indisponible : vérifier le Worker /objets';counter.textContent='— armes'});
 </script></body></html>
