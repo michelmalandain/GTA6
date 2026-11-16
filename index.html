@@ -21,6 +21,20 @@
   @media(max-aspect-ratio:1648/928){.scene{width:100vw}}
   @media(min-aspect-ratio:1648/928){.scene{height:100svh;width:auto}}
   @media(prefers-reduced-motion:reduce){.zone{transition:none}}
+
+  /* Avertissement d’âge : indépendant du décor et de ses liens */
+  body.age-locked{overflow:hidden}
+  .age-gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(9,4,17,.94);color:#fff;text-align:center;font-family:Arial,sans-serif}
+  .age-gate[hidden]{display:none}
+  .age-card{width:min(490px,100%);padding:32px 26px;border:2px solid #f879d6;border-radius:16px;background:linear-gradient(145deg,#2d103c,#130a20);box-shadow:0 0 32px #f346b777}
+  .pegi{display:inline-grid;place-items:center;width:106px;height:106px;background:#ed1c24;color:white;border:5px solid white;box-shadow:0 0 0 2px #111;font:bold 54px Arial,sans-serif;line-height:1}
+  .age-card h1{font:italic bold 29px Georgia,serif;color:#ffd2f3;margin:22px 0 12px}
+  .age-card p{line-height:1.55;color:#f1deee}
+  .age-check{display:flex;align-items:center;justify-content:center;gap:10px;margin:23px 0;font-size:16px;cursor:pointer}
+  .age-check input{width:21px;height:21px;accent-color:#e749b6;cursor:pointer}
+  .age-enter{border:1px solid #ff95dc;border-radius:9px;background:#b82783;color:#fff;padding:13px 20px;font:bold 16px Arial,sans-serif;cursor:pointer}
+  .age-enter:disabled{opacity:.42;cursor:not-allowed}
+  .age-enter:not(:disabled):hover,.age-enter:not(:disabled):focus-visible{box-shadow:0 0 17px #ff63c8}
 </style>
 </head>
 <body>
@@ -40,5 +54,38 @@
       <a class="zone binoculars" href="activites.html" style="--x:69.3%;--y:37.2%;--w:6.8%;--h:7.5%;" aria-label="Activités (jumelles)" title="Activités (jumelles)"></a>
       <a class="zone tablet" href="actualites.html" style="--x:73.8%;--y:84.0%;--w:13.8%;--h:14.5%;" aria-label="Actualités" title="Actualités"></a>
   </main>
+
+  <section id="ageGate" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="ageTitle" hidden>
+    <div class="age-card">
+      <div class="pegi" aria-label="PEGI 18">18</div>
+      <h1 id="ageTitle">Avertissement — PEGI 18</h1>
+      <p>Le Carnet de Leonida est consacré à GTA VI, un univers destiné à un public adulte.</p>
+      <label class="age-check"><input id="ageConfirm" type="checkbox"> Je certifie avoir 18 ans ou plus.</label>
+      <button id="ageEnter" class="age-enter" type="button" disabled>Entrer dans Le Carnet de Leonida</button>
+    </div>
+  </section>
+  <script>
+    (()=>{
+      const key='leonida-age-18-confirmed';
+      const gate=document.getElementById('ageGate');
+      const check=document.getElementById('ageConfirm');
+      const enter=document.getElementById('ageEnter');
+      let confirmed=false;
+      try{confirmed=localStorage.getItem(key)==='yes'}catch(e){}
+      if(confirmed)return;
+      gate.hidden=false;
+      document.body.classList.add('age-locked');
+      document.querySelectorAll('.scene a').forEach(a=>a.setAttribute('tabindex','-1'));
+      check.addEventListener('change',()=>{enter.disabled=!check.checked});
+      enter.addEventListener('click',()=>{
+        if(!check.checked)return;
+        try{localStorage.setItem(key,'yes')}catch(e){}
+        gate.hidden=true;
+        document.body.classList.remove('age-locked');
+        document.querySelectorAll('.scene a').forEach(a=>a.removeAttribute('tabindex'));
+      });
+      check.focus();
+    })();
+  </script>
 </body>
 </html>
