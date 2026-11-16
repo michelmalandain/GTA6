@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#140d1d">
+<title>GTA VI — Le Carnet de Leonida</title>
+<style>
+  :root{color-scheme:dark}
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:#140d1d;font-family:Georgia,serif}
+  body{display:grid;place-items:center;min-height:100svh}
+  .scene{position:relative;width:min(100vw,177.5862vh);aspect-ratio:1648/928;overflow:hidden;background:#170b23}
+  .decor{display:block;width:100%;height:100%;object-fit:contain;user-select:none;pointer-events:none}
+  .zone{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);display:block;cursor:pointer;border-radius:24%;outline:none;transition:filter .22s ease,box-shadow .22s ease,background .22s ease;}
+  .zone:hover,.zone:focus-visible{background:rgba(255,217,122,.08);box-shadow:0 0 18px 6px rgba(255,217,122,.50),inset 0 0 20px rgba(255,245,193,.4);filter:brightness(1.16)}
+  .zone:focus-visible{outline:2px solid #fff2b5;outline-offset:1px}
+  .tv,.portrait{border-radius:3%}
+  .laptop,.tablet,.magazine,.gun,.swimsuit,.weight{border-radius:16%}
+  .chair{border-radius:35%}
+  @media(max-aspect-ratio:1648/928){.scene{width:100vw}}
+  @media(min-aspect-ratio:1648/928){.scene{height:100svh;width:auto}}
+  @media(prefers-reduced-motion:reduce){.zone{transition:none}}
+</style>
+</head>
+<body>
+  <main class="scene" aria-label="Le Carnet de Leonida : explorez les objets du décor pour naviguer">
+    <img class="decor" src="accueil-leonida.png" alt="Mortitia sur un transat face à la plage de Leonida, entourée d'objets à découvrir" draggable="false">
+      <a class="zone tv" href="missions.html" style="--x:55.3%;--y:0.8%;--w:21.3%;--h:25.5%;" aria-label="Missions" title="Missions"></a>
+      <a class="zone portrait" href="personnages.html" style="--x:78.7%;--y:0.5%;--w:20.3%;--h:35.0%;" aria-label="Personnages" title="Personnages"></a>
+      <a class="zone laptop" href="quiz.html" style="--x:58.3%;--y:27.6%;--w:11.8%;--h:14.1%;" aria-label="Quiz" title="Quiz"></a>
+      <a class="zone chair" href="admin.html" style="--x:42.6%;--y:37.0%;--w:12.3%;--h:27.4%;" aria-label="Administration" title="Administration"></a>
+      <a class="zone moto" href="vehicules.html" style="--x:55.8%;--y:45.6%;--w:12.2%;--h:15.4%;" aria-label="Véhicules" title="Véhicules"></a>
+      <a class="zone dauphin" href="animaux.html" style="--x:72.3%;--y:40.9%;--w:11.1%;--h:21.2%;" aria-label="Animaux" title="Animaux"></a>
+      <a class="zone phone" href="objets.html" style="--x:86.1%;--y:44.8%;--w:7.0%;--h:17.0%;" aria-label="Objets" title="Objets"></a>
+      <a class="zone magazine" href="salon-prive.html" style="--x:57.2%;--y:61.4%;--w:17.9%;--h:16.1%;" aria-label="Salon privé" title="Salon privé"></a>
+      <a class="zone gun" href="objets-armes.html" style="--x:78.6%;--y:64.3%;--w:19.0%;--h:12.1%;" aria-label="Armes" title="Armes"></a>
+      <a class="zone swimsuit" href="objets-vetements.html" style="--x:56.5%;--y:82.1%;--w:20.0%;--h:15.7%;" aria-label="Vêtements" title="Vêtements"></a>
+      <a class="zone weight" href="activites.html" style="--x:74.7%;--y:68.8%;--w:10.5%;--h:8.8%;" aria-label="Activités" title="Activités"></a>
+      <a class="zone binoculars" href="activites.html" style="--x:69.3%;--y:37.2%;--w:6.8%;--h:7.5%;" aria-label="Activités (jumelles)" title="Activités (jumelles)"></a>
+      <a class="zone tablet" href="actualites.html" style="--x:73.8%;--y:84.0%;--w:13.8%;--h:14.5%;" aria-label="Actualités" title="Actualités"></a>
+  </main>
+</body>
+</html>
