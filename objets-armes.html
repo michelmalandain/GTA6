@@ -5,8 +5,8 @@
 .stage{position:relative;width:min(100%,1673px);margin:0 auto;overflow:hidden}
 .stage>img{display:block;width:100%;height:auto}
 /* Bandeau HTML identique à la navigation des véhicules, sans boutons peints dans le PNG. */
-.nav{position:absolute;top:17.65%;left:0;width:100%;height:7.5%;display:grid;grid-template-columns:1fr 1.15fr 1fr 1.4fr 1fr 1fr 1.1fr 1.55fr;gap:.3%;padding:.25% 1%;background:linear-gradient(#170820,#080311);z-index:3}
-.nav a{display:flex;align-items:center;justify-content:center;min-width:0;color:white;text-decoration:none;font-size:clamp(8px,1.48vw,23px);font-weight:bold;font-style:italic;text-shadow:0 2px 3px #000;border:2px solid #fc65e9;border-radius:18px;background:linear-gradient(#390e4b,#07030c 72%);box-shadow:inset 0 0 9px #d92ed6,0 0 9px #f333c9}
+.nav{position:absolute;top:17.2%;left:0;width:100%;height:8.2%;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.3%;padding:.25% 1%;background:linear-gradient(#170820,#080311);z-index:3}
+.nav a{display:flex;align-items:center;justify-content:center;min-width:0;color:white;text-decoration:none;font-size:clamp(8px,1.48vw,23px);font-weight:normal;font-style:italic;text-shadow:0 2px 3px #000;border:2px solid #fc65e9;border-radius:7px;background:linear-gradient(#341342,#160a25);box-shadow:inset 0 0 9px #d92ed6,0 0 9px #f333c9}
 .nav a:hover,.nav a:focus-visible{background:#6a176f;outline:1px solid white}
 /* Catalogue intégré dans le panneau droit du décor, sans modifier le PNG. */
 .catalogue{position:absolute;left:56.5%;top:30.5%;width:39.5%;height:62%;overflow:auto;z-index:2;padding:1.1%;scrollbar-color:#ef72e8 #1b0a25;background:rgba(16,4,27,.16);border-radius:12px}
@@ -23,11 +23,20 @@
 .dialog-backdrop[hidden]{display:none}.dialog{width:min(780px,96vw);max-height:92vh;overflow:auto;background:linear-gradient(145deg,#2c0b39,#10051a 75%);border:2px solid #f46add;border-radius:18px;box-shadow:0 0 26px #e431ca;padding:22px;color:#fff}
 .dialog h2{margin:0 0 12px;font-size:clamp(20px,2.4vw,32px)}.detail-grid{display:grid;grid-template-columns:minmax(0,45%) 1fr;gap:20px;align-items:start}.detail-grid img{width:100%;max-height:340px;object-fit:contain;background:#100c18;border-radius:10px}.dialog p{line-height:1.5;overflow-wrap:anywhere}.dialog label{display:block;margin:12px 0 5px;color:#efb8ee}.dialog input,.dialog textarea,.dialog select{width:100%;background:#170920;color:white;border:1px solid #9d539e;border-radius:7px;padding:9px;font:inherit}.dialog textarea{min-height:100px;resize:vertical}.dialog-actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end;margin-top:18px}.small-btn{background:#32123e;color:#fff;border:1px solid #c77ac2;border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}.small-btn:hover{background:#62256d}.small-btn.danger{border-color:#e3a0ad}.dialog .error{color:#ffc2ce}.dialog .success{color:#bfffd5}.admin-row{display:flex;justify-content:flex-end;margin-top:8px}.admin-row .small-btn{font-size:12px;padding:5px 9px;opacity:.85}
 @media(max-width:580px){.detail-grid{grid-template-columns:1fr}.dialog{padding:14px}}
+
+/* Catalogue en deux colonnes, assorti à la charte rose/violet. */
+#weapons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-content:start}
+.weapon{min-width:0;display:flex;align-items:center;gap:7px;margin:0;padding:7px;background:#260e35;border:1px solid #ef77dc;border-radius:9px}
+.weapon img{width:38%;flex:0 0 38%;min-width:0;aspect-ratio:4/3;object-fit:contain}
+.weapon div{min-width:0;overflow-wrap:anywhere}
+.weapon strong{font-weight:normal;font-size:clamp(10px,.95vw,16px)}
+.weapon small,.weapon em{font-weight:normal}
+@media(max-width:700px){#weapons{gap:4px}.weapon{padding:3px;gap:3px}.weapon img{width:32%;flex-basis:32%}.weapon strong{font-size:9px}}
 </style></head><body>
 <main class="stage">
 <img src="objets-armes.png" width="1673" height="940" alt="Armurerie de Leonida : Mortitia en robe blanche, décor néon et espace libre pour le catalogue des armes">
 <nav class="nav" aria-label="Navigation principale">
-<a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="activites.html">Activités</a><a href="admin.html">Administration</a>
+<a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="activites.html">Activités</a>
 </nav>
 <div class="counter" id="armes-total" aria-live="polite">Chargement…</div>
 <section class="catalogue" aria-label="Catalogue des armes"><div class="filters"><input id="q" placeholder="Rechercher une arme" aria-label="Rechercher"><select id="cat" aria-label="Catégorie"><option value="">Toutes les catégories</option></select></div><div id="weapons"></div></section>
