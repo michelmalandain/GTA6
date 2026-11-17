@@ -3,15 +3,32 @@
 <style>
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#16051e;color:white}.stage{position:relative;width:min(100%,1671px);margin:0 auto}.stage img{display:block;width:100%;height:auto}.hotspot{position:absolute;display:block;border-radius:12px;text-decoration:none;cursor:pointer}.hotspot:hover,.hotspot:focus-visible{outline:2px solid #ff8de9;outline-offset:-2px;box-shadow:0 0 22px #f600d9;}
 /* Positionnements relatifs au visuel validé, 1670 × 941 */
+
+/* Navigation HTML commune au Carnet de Leonida, par-dessus le bandeau du PNG. */
+.nav{position:absolute;left:0;top:18.1%;width:100%;height:6.5%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.35%;padding:.25% .55%;z-index:10;background:#160920;border-top:2px solid #f95dd7;border-bottom:2px solid #f95dd7;box-shadow:0 0 14px #f43cb977}
+.nav a{display:flex;align-items:center;justify-content:center;min-width:0;background:linear-gradient(180deg,#341342,#160a25);border:1px solid #f49bdc;border-radius:6px;color:#fff3fb;text-decoration:none;text-align:center;font:italic 700 clamp(9px,1.17vw,18px)/1.1 Georgia,serif;text-shadow:0 1px 3px #000}
+.nav a:hover,.nav a:focus-visible{box-shadow:0 0 13px #ff5aca;outline:none}
+/* Petit compteur discret sous la lampe, à gauche du décor. */
+.object-count{position:absolute;left:5.5%;top:42%;width:22%;min-height:7%;padding:.45% 1%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#160920d9;border:1px solid #f49bdc;border-radius:9px;box-shadow:0 0 12px #f43cb977;color:#fff3fb;text-align:center;font:italic normal clamp(11px,1.15vw,18px)/1.2 Georgia,serif;text-shadow:0 1px 3px #000;z-index:4}
+.object-count strong{font:normal clamp(17px,1.8vw,29px)/1.1 Georgia,serif}
 </style></head><body><main class="stage"><img src="objets.png" width="1670" height="941" alt="Accueil des objets de Leonida : Mortitia mécanicienne et quatre catégories">
-<a class="hotspot" href="index.html" aria-label="Accueil" style="left:1.5%;top:18.1%;width:14.1%;height:6.5%"></a>
-<a class="hotspot" href="actualites.html" aria-label="Actualités" style="left:16.2%;top:18.1%;width:14.1%;height:6.5%"></a>
-<a class="hotspot" href="missions.html" aria-label="Missions" style="left:30.8%;top:18.1%;width:14.1%;height:6.5%"></a>
-<a class="hotspot" href="personnages.html" aria-label="Personnages" style="left:45.5%;top:18.1%;width:16.4%;height:6.5%"></a>
-<a class="hotspot" href="animaux.html" aria-label="Animaux" style="left:62.5%;top:18.1%;width:17.3%;height:6.5%"></a>
-<a class="hotspot" href="admin.html" aria-label="Administration" style="left:80.4%;top:18.1%;width:17.4%;height:6.5%"></a>
+<nav class="nav" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a></nav>
+<div class="object-count" aria-live="polite"><strong id="objectTotal">—</strong><span>Objets de Leonida</span></div>
 <a class="hotspot" href="objets-vehicules.html" aria-label="Véhicules" style="left:51%;top:27.7%;width:22.8%;height:31.3%"></a>
 <a class="hotspot" href="objets-armes.html" aria-label="Armes" style="left:75%;top:27.7%;width:22.7%;height:31.3%"></a>
 <a class="hotspot" href="objets-divers.html" aria-label="Gadgets" style="left:51%;top:61%;width:22.8%;height:31.3%"></a>
 <a class="hotspot" href="objets-vetements.html" aria-label="Vêtements" style="left:75%;top:61%;width:22.7%;height:31.3%"></a>
-</main></body></html>
+</main><script>
+/* Le total regroupe les véhicules et les objets (armes, gadgets, vêtements…). */
+(async function(){
+ const el=document.getElementById('objectTotal');
+ const base='https://gta6worker.michelmalandain.workers.dev';
+ try{
+  const responses=await Promise.all(['/vehicules','/objets'].map(p=>fetch(base+p,{cache:'no-store'})));
+  if(responses.some(r=>!r.ok))throw Error('Worker indisponible');
+  const [vehicules,objets]=await Promise.all(responses.map(r=>r.json()));
+  if(!Array.isArray(vehicules.vehicules)||!Array.isArray(objets.objets))throw Error('Réponse inattendue');
+  el.textContent=(vehicules.vehicules.length+objets.objets.length).toLocaleString('fr-FR');
+ }catch(e){el.textContent='—';el.title='Compteur indisponible';}
+})();
+</script></body></html>
