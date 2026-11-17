@@ -3,7 +3,7 @@
 <style>
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#16051e;color:white}.stage{position:relative;width:min(100%,1671px);margin:0 auto}.stage img{display:block;width:100%;height:auto}.hotspot{position:absolute;display:block;border-radius:12px;text-decoration:none;cursor:pointer}.hotspot:hover,.hotspot:focus-visible{outline:2px solid #ff8de9;outline-offset:-2px;box-shadow:0 0 22px #f600d9;}
 /* Navigation HTML : masque les anciens boutons intégrés au décor */
-.navigation{position:absolute;left:0;top:17.8%;width:100%;height:7.2%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.45%;padding:.35% .7%;background:#160920;border-top:2px solid #f95dd7;border-bottom:2px solid #f95dd7;box-shadow:0 0 14px #f43cb977;z-index:5}
+.navigation{position:absolute;left:0;top:17.8%;width:100%;height:7.2%;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.45%;padding:.35% .7%;background:#160920;border-top:2px solid #f95dd7;border-bottom:2px solid #f95dd7;box-shadow:0 0 14px #f43cb977;z-index:5}
 .navigation a{display:flex;align-items:center;justify-content:center;min-width:0;text-align:center;text-decoration:none;color:#fff3fb;background:linear-gradient(180deg,#371143,#1b092b);border:2px solid #f67ad9;border-radius:9px;font:italic bold clamp(10px,1.2vw,20px)/1.1 Georgia,serif;text-shadow:0 1px 3px #000;box-shadow:0 0 8px #ff54d855}
 .navigation a:hover,.navigation a:focus-visible{background:linear-gradient(180deg,#ff77d6,#a71c80);outline:2px solid #ffb7ed}
 .animal-counter{position:absolute;left:4%;top:49%;width:19%;min-height:7%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:.4% .8%;border:1px solid #f67ad9;border-radius:9px;background:rgba(22,6,34,.88);box-shadow:0 0 10px #f44cce99;text-align:center;z-index:4}
@@ -12,7 +12,7 @@
 @media(max-width:700px){.navigation a{font-size:10px;border-width:1px;border-radius:5px}.animal-counter{border-width:1px;border-radius:8px}}
 /* Positionnements relatifs au visuel validé, 1670 × 942 */
 </style></head><body><main class="stage"><img src="animaux.png" width="1670" height="942" alt="Accueil des animaux de Leonida : Mortitia avec un alligator et quatre catégories d'animaux">
-<nav class="navigation" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="objets.html">Objets</a></nav>
+<nav class="navigation" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="quiz.html">Quiz</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="objets.html">Objets</a><a href="activites.html">Activités</a></nav>
 <div class="animal-counter" aria-live="polite"><strong id="animal-total">…</strong><span id="animal-label">Animaux de Leonida</span></div>
 <a class="hotspot" href="animaux-domestiques.html" aria-label="Animaux domestiques" style="left:51%;top:27.7%;width:22.8%;height:31.3%"></a>
 <a class="hotspot" href="animaux-faune.html" aria-label="Faune" style="left:75%;top:27.7%;width:22.7%;height:31.3%"></a>
