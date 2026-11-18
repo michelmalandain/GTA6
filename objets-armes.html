@@ -32,12 +32,15 @@
 .weapon strong{font-weight:normal;font-size:clamp(10px,.95vw,16px)}
 .weapon small,.weapon em{font-weight:normal}
 @media(max-width:700px){#weapons{gap:4px}.weapon{padding:3px;gap:3px}.weapon img{width:32%;flex-basis:32%}.weapon strong{font-size:9px}}
+
+.nav{grid-template-columns:repeat(8,minmax(0,1fr));}
+.nav a{font-size:clamp(8px,1.25vw,20px);}
+@media(max-width:700px){.nav a{font-size:clamp(6px,1.2vw,10px)}}
+body:has(#dialog-backdrop:not([hidden])) .nav{visibility:hidden!important;}
 </style></head><body>
 <main class="stage">
 <img src="objets-armes.png" width="1673" height="940" alt="Armurerie de Leonida : Mortitia en robe blanche, décor néon et espace libre pour le catalogue des armes">
-<nav class="nav" aria-label="Navigation principale">
-<a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="activites.html">Activités</a>
-</nav>
+<nav class="nav" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="quiz.html">Quiz</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="activites.html">Activités</a></nav>
 <div class="counter" id="armes-total" aria-live="polite">Chargement…</div>
 <section class="catalogue" aria-label="Catalogue des armes"><div class="filters"><input id="q" placeholder="Rechercher une arme" aria-label="Rechercher"><select id="cat" aria-label="Catégorie"><option value="">Toutes les catégories</option></select></div><div id="weapons"></div></section>
 </main>

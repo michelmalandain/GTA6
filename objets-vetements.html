@@ -23,12 +23,15 @@
 .dialog-backdrop[hidden]{display:none}.dialog{width:min(780px,96vw);max-height:92vh;overflow:auto;background:linear-gradient(145deg,#2c0b39,#10051a 75%);border:2px solid #f46add;border-radius:18px;box-shadow:0 0 26px #e431ca;padding:22px;color:#fff}
 .dialog h2{margin:0 0 12px;font-size:clamp(20px,2.4vw,32px)}.detail-grid{display:grid;grid-template-columns:minmax(0,45%) 1fr;gap:20px;align-items:start}.detail-grid img{width:100%;max-height:340px;object-fit:contain;background:#100c18;border-radius:10px}.dialog p{line-height:1.5;overflow-wrap:anywhere}.dialog label{display:block;margin:12px 0 5px;color:#efb8ee}.dialog input,.dialog textarea,.dialog select{width:100%;background:#170920;color:white;border:1px solid #9d539e;border-radius:7px;padding:9px;font:inherit}.dialog textarea{min-height:100px;resize:vertical}.dialog-actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end;margin-top:18px}.small-btn{background:#32123e;color:#fff;border:1px solid #c77ac2;border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}.small-btn:hover{background:#62256d}.small-btn.danger{border-color:#e3a0ad}.dialog .error{color:#ffc2ce}.dialog .success{color:#bfffd5}.admin-row{display:flex;justify-content:flex-end;margin-top:8px}.admin-row .small-btn{font-size:12px;padding:5px 9px;opacity:.85}
 @media(max-width:580px){.detail-grid{grid-template-columns:1fr}.dialog{padding:14px}}
+
+.nav{grid-template-columns:repeat(8,minmax(0,1fr));}
+.nav a{font-size:clamp(8px,1.25vw,20px);}
+@media(max-width:700px){.nav a{font-size:clamp(6px,1.2vw,10px)}}
+body:has(#dialog-backdrop:not([hidden])) .nav{visibility:hidden!important;}
 </style></head><body>
 <main class="stage">
 <img src="objets-vetements.png" width="1651" height="928" alt="Vêtements de Leonida : Mortitia dans sa boutique, espace pour le catalogue">
-<nav class="nav" aria-label="Navigation principale">
-<a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Gadgets</a><a href="activites.html">Activités</a><a href="admin.html">Administration</a>
-</nav>
+<nav class="nav" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="actualites.html">Actualités</a><a href="quiz.html">Quiz</a><a href="missions.html">Missions</a><a href="personnages.html">Personnages</a><a href="animaux.html">Animaux</a><a href="objets.html">Objets</a><a href="activites.html">Activités</a></nav>
 <div class="counter" id="vetements-total" aria-live="polite">Chargement…</div>
 <button type="button" class="open-catalogue" id="open-catalogue">VOIR LES VÊTEMENTS</button>
 </main>
